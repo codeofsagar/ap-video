@@ -318,7 +318,7 @@ html, body {
   }
 
   .hero-highlight {
-    font-size: 4.5vw;
+    font-size: 3.5vw;
   }
 
   .hero-bottom-text p {
@@ -392,8 +392,8 @@ html, body {
   }
 
   .hero-highlight {
-    font-size: 5vw;
-    line-height: 1.3;
+    font-size: 3vw;
+    line-height: 1.2;
   }
 
   .hero-bottom-text p {
@@ -466,7 +466,7 @@ html, body {
   }
 
   .hero-highlight {
-    font-size: 6.5vw;
+    font-size: 4.5vw;
     line-height: 1.3;
   }
 
