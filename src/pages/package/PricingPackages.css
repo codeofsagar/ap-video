@@ -1,4 +1,5 @@
 /* src/components/PricingPackages/PricingPackages.css */
+
 :root {
   --background: #0f0f14;
   --background-light: #1a1a24;
@@ -9,6 +10,7 @@
   overflow-x: hidden;
 }
 
+/* MAIN SECTION */
 .pricing-packages {
   position: relative;
   width: 100%;
@@ -25,12 +27,13 @@
   padding: 0 2rem;
 }
 
+/* HEADER */
 .pricing-header {
   text-align: center;
   margin-bottom: 5rem;
   position: relative;
   z-index: 2;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
+  font-family: 'Druk Wide Cy Web Bold Regular';
 }
 
 .pricing-title {
@@ -44,7 +47,7 @@
   color: transparent;
   position: relative;
   display: inline-block;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
+  font-family: 'Druk Wide Cy Web Bold Regular';
 }
 
 .pricing-title::after {
@@ -78,7 +81,7 @@
   letter-spacing: 1px;
 }
 
-/* Packages Grid */
+/* GRID */
 .packages-grid {
   display: flex;
   flex-direction: column;
@@ -87,6 +90,7 @@
   margin: 0 auto;
 }
 
+/* PACKAGE CARD */
 .package-card {
   position: relative;
   background: rgba(25, 25, 35, 0.7);
@@ -105,46 +109,37 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent);
 }
 
+/* LEFT COLUMN */
 .card-left {
   flex: 1;
-  padding: 3rem;
+  padding: 2.2rem 3rem; /* reduced padding */
   display: flex;
   flex-direction: column;
 }
 
-.card-right {
-  flex: 0 0 45%;
-  min-width: 45%;
-}
-
-.card-bottom {
-  width: 100%;
-  padding: 0 3rem 3rem 3rem;
-  order: 3; /* Ensure it comes last on mobile */
-}
-
+/* TITLE AREA FIXED */
 .card-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.8rem; /* was 1.5 — reduced */
 }
 
 .card-title {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
-  
+  margin-bottom: 0.2rem; /* reduced from 0.5 */
+  line-height: 1.1;
+  font-family: 'Druk Wide Cy Web Bold Regular';
 }
 
 .card-subtitle {
   font-size: 1.3rem;
-  font-weight: 600;
   opacity: 0.9;
   color: var(--text-secondary);
+  margin-top: 12px;
 }
 
+/* DESCRIPTION */
 .card-description {
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   font-size: 1.2rem;
   line-height: 1.7;
   color: var(--text-secondary);
@@ -160,7 +155,12 @@
   height: 80%;
   width: 3px;
   background: var(--accent);
-  border-radius: 2px;
+}
+
+/* VIDEO CONTAINER */
+.card-right {
+  flex: 0 0 45%;
+  min-width: 45%;
 }
 
 .video-container {
@@ -178,13 +178,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
-.package-card:hover .package-video {
-  transform: scale(1.03);
-}
-
+/* GRADIENT OVERLAY */
 .video-overlay {
   position: absolute;
   top: 0;
@@ -194,11 +190,13 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 70%);
 }
 
+/* PLAY / PAUSE BUTTON (fixed small on mobile) */
 .video-control-play,
 .video-control-pause {
   position: absolute;
-  bottom: 25px;
-  right: 25px;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.7);
   border: none;
   border-radius: 50%;
@@ -208,47 +206,31 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 2;
+  z-index: 10;
   color: white;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
 }
 
 .video-control-play:hover,
 .video-control-pause:hover {
-  background: rgba(0, 0, 0, 0.9);
-  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateX(-50%) scale(1.08);
 }
 
+/* FEATURES SECTION */
 .features-section {
   display: flex;
-  gap: 2.5rem;
-  margin: 1.5rem 0 2rem;
+  gap: 2rem;
+  margin: 1.3rem 0 2rem;
 }
 
-.features-column {
-  flex: 1;
-}
-
-.features-section h4 {
-  font-size: 1.2rem;
+.features-column h4 {
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 1rem;
-  color: #ebbd7d;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 0.3rem;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
-}
-
-.features-section h4::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background: var(--accent);
+  margin-bottom: 0.8rem;
+  color: var(--accent);
+  font-family: 'Druk Wide Cy Web Bold Regular';
 }
 
 .features-section ul {
@@ -256,316 +238,152 @@
 }
 
 .features-section li {
-  font-size: 1rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.65rem;
   line-height: 1.6;
   color: var(--text-secondary);
-  position: relative;
 }
 
-.features-section li::before {
-  content: '•';
-  color: var(--accent);
-  font-weight: bold;
-  display: inline-block; 
-  width: 1em;
-  margin-left: -1em;
-}
-
+/* PRICE SECTION */
 .price-container {
-  margin: 1.5rem 0;
+  margin: 1.2rem 0;
   display: flex;
   align-items: flex-end;
   gap: 1.2rem;
 }
 
 .price {
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   font-weight: 800;
-  display: block;
   color: #ebbd7d;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
 }
 
 .original-price {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   opacity: 0.6;
   text-decoration: line-through;
   color: var(--text-secondary);
-  position: relative;
-  bottom: 3px;
-  font-Family: 'Druk Wide Cy Web Bold Regular'
 }
 
 .limited-offer {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-style: italic;
-  opacity: 0.8;
   margin-top: 0.5rem;
   color: var(--accent);
-  font-Family: 'Druk Wide Cy Web Bold Regular'
 }
 
+/* BOTTOM SECTION */
+.card-bottom {
+  width: 100%;
+  padding: 0 3rem 3rem 3rem;
+}
+
+/* GUARANTEE */
 .guarantee-box {
   background: rgba(0, 0, 0, 0.3);
   padding: 1.5rem;
   border-left: 4px solid var(--accent);
   border-radius: 0 8px 8px 0;
-  margin: 1.5rem 0;
+  margin-top: 30px;
 }
 
 .guarantee-title {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--accent);
-  font-Family: 'Druk Wide Cy Web Bold Regular'
 }
 
+/* CTA BUTTON */
 .ctabutt {
   padding: 1.2rem 2.5rem;
   border-radius: 50px;
   font-weight: 700;
   font-size: 1.2rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
   color: black;
   background: white;
-  margin-top: 0.5rem;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.ctabutt::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ebbd7d;
-  z-index: -1;
-  transition: transform 0.5s ease;
-  transform: scaleX(0);
-  transform-origin: right;
-}
-
-.ctabutt:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  color: black;
-}
-
-.ctabutt:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-.ctabutt:hover svg {
-  transform: translate(4px, -4px);
-}
-
-/* Recommendation Section */
-.recommendation {
-  background: linear-gradient(to right, rgba(30, 30, 45, 0.7), rgba(0, 0, 20, 0.8));
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 3.5rem;
-  margin: 6rem auto 0;
-  max-width: 1200px;
-  backdrop-filter: blur(10px);
+  margin-top: 0.8rem;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-.recommendation::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(109,77,255,0.1) 0%, transparent 70%);
-  z-index: -1;
-}
+/* ============ RESPONSIVE FIXES ============ */
 
-.recommendation-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 2.5rem;
-  background: linear-gradient(to right, #ffffff, var(--accent-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.recommendation-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2.5rem;
-}
-
-.recommendation-card {
-  background-color: rgba(30, 30, 45, 0.6);
-  padding: 2rem;
-  border-radius: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.recommendation-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.recommendation-card .card-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-}
-
-.color-indicator {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-}
-
-.recommendation-card .card-title {
-  font-weight: 700;
-  font-size: 1.4rem;
-}
-
-.final-statement {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-top: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-}
-
-.final-statement span {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* Responsive Styles */
+/* TABLET */
 @media (max-width: 1200px) {
   .package-card {
     flex-direction: column;
   }
-  
+  .pricing-title{
+    font-size: 2.3rem;
+  }
+
   .card-right {
-    flex: 1;
     min-width: 100%;
-    height: auto;
-    order: 2; /* Video comes after content on mobile */
-  }
-  
-  .card-bottom {
-    order: 3; /* Comes after video */
-  }
-  
-  .video-container {
-    min-height: 400px;
-  }
-  
-  .pricing-title {
-    font-size: 2.2rem;
   }
 }
 
+/* MOBILE */
+@media (max-width: 800px) {
 
-@media (max-width: 900px) {
   .features-section {
     flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .ctabutt {
-    padding: 1rem 1.5rem;
   }
 
-  .pricing-title {
+  .features-section li {
+    font-size: 1.15rem; /* INCREASED */
+  }
+
+  .features-column h4 {
+    font-size: 1.35rem; /* INCREASED */
+  }
+
+  .video-control-play,
+  .video-control-pause {
+    width: 44px;
+    height: 44px;
+    bottom: 16px;
+  }
+
+  .price {
     font-size: 2rem;
-  }
-  
-  .pricing-subtitle {
-    font-size: 1.2rem;
-  }
-  
-  .pick-weapon {
-    font-size: 1.8rem;
-  }
-  
-  .recommendation {
-    padding: 2.5rem;
   }
 }
 
-@media (max-width: 600px) {
-  .pricing-title {
-    font-size: 1.9rem;
+/* iPHONE / VERY SMALL SCREEN */
+@media (max-width: 480px) {
+
+  .card-left {
+    padding: 1.8rem 2rem;
   }
 
-  .pricing-subtitle {
-    font-size: 1.1rem;
-  }
-  
-  .pick-weapon {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
-  
-  .recommendation-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .card-title {
-    font-size: 1.1rem;
+    font-size: 1.8rem;
   }
-  
-  .price {
-    font-size: 1.5rem;
+
+  .features-section li {
+    font-size: 1.15rem; /* bigger now */
   }
-  
-  .package-card {
-    padding: 0;
+
+  .features-column h4 {
+    font-size: 1.3rem;
   }
-  
-  .card-left {
-    padding: 2rem;
-  }
-  
-  .card-bottom {
-    padding: 0 2rem 2rem 2rem;
-  }
-  
-  .video-container {
-    min-height: 300px;
-  }
-  
+
   .video-control-play,
   .video-control-pause {
-    width: 40px;
-    height: 40px;
-    bottom: 15px;
-    right: 15px;
+    width: 38px;
+    height: 38px;
+    bottom: 12px;
   }
 
-  .package-video {
-    object-fit: contain;
+  .price {
+    font-size: 1.7rem;
+  }
+
+  .limited-offer {
+    font-size: 0.8rem;
   }
 }
