@@ -9,6 +9,7 @@
   background-color: var(--fg);
   border-radius: 1em;
   font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .contact-form h3,
@@ -22,6 +23,36 @@
   color: #FFD700; /* Golden color */
 }
 
+.success-message {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: center;
+  color: #3c763d;
+}
+
+.success-message h3 {
+  margin-top: 0;
+  color: #3c763d;
+}
+
+/* Error message */
+.error-message {
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 0;
+  color: #a94442;
+}
+
+/* Loading state for button */
+.bt[disabled] {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
 .contact-form input,
 .contact-form textarea {
   background-color: var(--fg200);
@@ -30,6 +61,8 @@
   padding: 12px 16px;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -45,6 +78,7 @@
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
   width:100%;
+  box-sizing: border-box;
 }
 
 .bt:hover {
@@ -127,24 +161,27 @@
   display: flex;
   gap: 1.5em;
   margin-bottom: 1em;
+  flex-wrap: wrap;
 }
 
 .package-option {
   display: flex;
   align-items: center;
   gap: 0.5em;
+  min-width: 100px;
 }
 
 .package-option input {
   width: 18px;
   height: 18px;
   margin: 0;
-  accent-color: #FFD700; /* Golden radio button */
+  accent-color: #ebbd7d; /* Golden radio button */
 }
 
 .package-option label {
   cursor: pointer;
   font-size: 1rem;
+  white-space: nowrap;
 }
 
 /* Features section */
@@ -217,7 +254,46 @@
   }
 
   .package-options {
-    flex-direction: column;
-    gap: 0.75em;
+    flex-direction: row;
+    gap: 1.5em;
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 480px) {
+  .contact-form {
+    margin: 0.5em !important;
+    padding: 1em !important;
+    border-radius: 0.5em;
+    gap: 2em;
+  }
+  
+  .contact-form-row, 
+  .contact-form-col {
+    width: 100%;
+  }
+  
+  .form-item {
+    width: 100%;
+  }
+  
+  .package-options {
+    gap: 1em;
+    justify-content: flex-start;
+  }
+  
+  .package-option {
+    flex: 0 0 calc(50% - 0.5em);
+    min-width: auto;
+  }
+  
+  .contact-features {
+    gap: 1em;
+  }
+  
+  .feature-item {
+    text-align: left !important;
+    padding: 0 !important;
   }
 }

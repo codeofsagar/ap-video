@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: "Inter";
+  /* font-family: "Inter"; */
   background-color: var(--bg);
   color: var(--fg);
   overflow-x:hidden;
@@ -34,13 +34,13 @@ h3,
 h4,
 h5 {
   text-transform: uppercase;
-  font-family: "Inter";
+  font-family: "font-family: "Druk Wide Cy Web Bold Regular";";
 }
 
 h1 {
   font-size: 8vw;
   font-weight: 600;
-  
+  font-family: "Druk Wide Cy Web Bold Regular";
   line-height: 6.4vw;
 }
 
@@ -134,7 +134,7 @@ textarea:focus {
   outline: none;
   width: 100%;
   padding: 1em;
-  font-family: Inter";
+  font-family: "Inter";
   font-size: 1rem;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
@@ -143,7 +143,7 @@ textarea:focus {
 
 input::placeholder,
 textarea::placeholder {
-  font-family: Inter";
+  font-family: "Inter";
   font-size: 1rem;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
@@ -160,7 +160,7 @@ textarea::placeholder {
   font-weight: 600;
   
   border-radius: 0.4em;
-  background-color: var(--fg);
+  background-color: #ebbd7d;
   color: var(--bg);
   -webkit-font-smoothing: antialiased;
 }

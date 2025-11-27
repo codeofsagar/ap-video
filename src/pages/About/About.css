@@ -133,7 +133,7 @@ h3 {
 
 /* New styles for gold titles and larger descriptions */
 .gold-title {
-  color: #FFD700 !important;
+  color: #ebbd7d !important;
   font-weight: bold;
 }
 
@@ -168,6 +168,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   gap: 1.5em;
+  font-family: "Druk Wide Cy Web Bold Regular";
 }
 
 .fav-tools-header p.primary {

@@ -36,7 +36,7 @@ z-index: 2;
 .reviews-title {
 font-size: 5rem;
 font-weight: 700;
-color: #FFD700;
+color: "#ebbd7d";
 text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
 letter-spacing: 2px;
 margin: 0;
@@ -83,7 +83,7 @@ position: absolute;
 top: 25%;
 font-size: 4rem;
 opacity: 0.3;
-color: #FFD700;
+  color: "#ebbd7d";
 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 z-index: 2;
 }
@@ -114,7 +114,7 @@ position: relative;
 }
 
 .review-thumbnail.active {
-border: 3px solid #E9C401;
+border: 3px solid #ebbd7d;
 transform: scale(1.15);
 box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3);
 }

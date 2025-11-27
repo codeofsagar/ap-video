@@ -1,4 +1,3 @@
-
 .footer {
   width: 100vw;
   height: 100%;
@@ -9,10 +8,8 @@
   justify-content: space-between;
   overflow: hidden;
   overflow-x: hidden; /* Prevent horizontal overflow */
-  .footer {
-  background-color: var(--bg, #ffffff);
-  color: var(--fg, #000000);
-}
+  background-color: var(--bg, black);
+  color: var(--fg, white);
 }
 
 .footer-row:nth-child(1) {
@@ -37,12 +34,18 @@
   padding: 1em 0;
   display: flex;
   justify-content: space-between;
-  border-top: 1px dashed white;;
+  border-top: 1px dashed white;
   transition: transform 0.3s ease;
+  color: white;
 }
 
 .footer-nav-item:hover {
   transform: translateX(-5px);
+  color: #ebbd7d; /* UPDATED */
+}
+
+.footer-nav-item span {
+  color: inherit;
 }
 
 .footer-nav-item:last-child {
@@ -52,7 +55,7 @@
 .footer-contact {
   display: flex;
   flex-direction: column;
-  gap: 1em; /* Reduced gap */
+  gap: 1em;
 }
 
 .footer-contact p {
@@ -60,7 +63,7 @@
 }
 
 .highlight-email {
-  color: #F3CB01; /* Yellow color for email */
+  color: #ebbd7d !important; /* UPDATED */
   font-weight: 600;
 }
 
@@ -68,25 +71,25 @@
   margin: 1.5em 0 1.5em;
   display: flex;
   flex-direction: column;
-  gap: 1em; /* Increased gap between contact items */
+  gap: 1em;
 }
 
 .contact-item {
   display: flex;
   align-items: center;
   gap: 0.8em;
-  font-size: 1.1em; /* Slightly larger text */
+  font-size: 1.1em;
 }
 
 .contact-icon {
   font-size: 1.2em;
   min-width: 1.5em;
-  color: #F3CB01; /* Yellow icons */
+  color: #ebbd7d; /* UPDATED */
 }
 
 .contact-info a {
   text-decoration: none;
-  color: inherit;
+  color: white;
   display: flex;
   align-items: center;
   gap: 0.8em;
@@ -108,9 +111,24 @@
 .footer-header h1 {
   position: relative;
   left: -0.5vw;
-  font-size: 15vw;
+  font-size: 10vw;
+  
+  color: #ebbd7d; /* UPDATED */
 }
 
+/* FIX AP AGENCY OVERFLOW */
+html, body {
+  overflow-x: hidden !important;
+}
+
+.footer-header h1 {
+  left: 0 !important;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  color :white;
+}
+
+/* COPYRIGHT */
 .footer-copyright-line {
   width: 100%;
   padding: 0.5em 0;
@@ -118,15 +136,17 @@
   justify-content: space-between;
   align-items: flex-start;
   border-top: 1px dashed white;
+  color: #ebbd7d; /* UPDATED */
 }
 
 .footer-copyright-line p:nth-child(2) {
   text-align: right;
 }
 
-.bt{
-  color:black;
-  background-color:white;
+/* BUTTON */
+.bt {
+  color: black;
+  background-color: #ebbd7d;
   border: 2px solid black;
   padding: 14px 10px;
   text-align: center;
@@ -136,21 +156,6 @@
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
-  
-}
-/* Add color to nav items */
-.footer-nav-item {
-  color: white; /* Fallback to black if --fg not defined */
-}
-
-/* Ensure hover states are visible */
-.footer-nav-item:hover {
-  color: #F3CB01; /* Match your accent color */
-}
-
-/* Fix arrow color */
-.footer-nav-item span {
-  color: inherit;
 }
 
 .bt:hover {
@@ -165,10 +170,8 @@
 
   .footer-nav {
     align-items: flex-start;
-     .footer-nav {
-    width: 100%; /* Takes full width on mobile */
-    margin-top: 2em; /* Add spacing between sections */
-  }
+    width: 100%;
+    margin-top: 2em;
   }
 
   .footer-nav-item {
@@ -183,11 +186,11 @@
     padding: 4em 1.25em 1.25em 1.25em;
     gap: 2em;
   }
-  
+
   .btn {
     padding: 0.7em 1.5em;
   }
-  
+
   .contact-item {
     font-size: 1em;
   }

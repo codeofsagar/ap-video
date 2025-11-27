@@ -150,7 +150,10 @@ style={{
 
 
   <div className="reviews-header">
-    <h2 className="reviews-title">SEE WHAT OUR CLIENTS SAID</h2>
+    <h2 className="reviews-title" style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>SEE WHAT OUR CLIENTS SAID</h2>
   </div>
   
   <h3 id="quote-icon">
@@ -159,7 +162,7 @@ style={{
 
   <div className="review-item">
     <h4 id="review-copy">{reviews[activeReview].copy}</h4>
-    <h4 id="review-author">- {reviews[activeReview].author}</h4>
+    <h4 id="review-author" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>- {reviews[activeReview].author}</h4>
   </div>
 
   <div className="reviews-list">

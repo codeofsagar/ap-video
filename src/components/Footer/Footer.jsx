@@ -1,12 +1,12 @@
 import React from "react";
 import "./Footer.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 
 // Importing icons
 import { FaPhone, FaEnvelope, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
-  const location = useLocation();
+  
   
   // Function to scroll to top and handle navigation
   const handleNavClick = () => {
@@ -17,14 +17,22 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-row">
         <div className="footer-contact">
-          <h3>
+          <h3  style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}
+>
             Let's Collaborate <br />
-            <a href="mailto:info@apagency.ca" className="highlight-email">
+            <a style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+ href="mailto:info@apagency.ca" className="highlight-email">
               info@apagency.ca
             </a>
           </h3>
           
-          <p className="secondary">
+          <p className="secondary"  style={{
+    
+    color: "white",
+  }}>
             From 12–16s short‑form ads to full creative direction — we partner
             with brands and agencies to make scroll‑stopping work. Reach out
             anytime.
@@ -77,12 +85,15 @@ const Footer = () => {
           </Link>
         </div>
 
-        <div className="footer-nav">
+        <div className="footer-nav" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+>
           <Link 
             to="/" 
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Go to home page"
+            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+
           >
             <span>Home</span>
             <span>&#8594;</span>
@@ -93,6 +104,8 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="View our portfolio"
+            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+
           >
             <span>Portfolio</span>
             <span>&#8594;</span>
@@ -103,6 +116,8 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Learn about us"
+            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+
           >
             <span>About</span>
             <span>&#8594;</span>
@@ -113,6 +128,8 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Contact us"
+            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+
           >
             <span>Contact</span>
             <span>&#8594;</span>
@@ -123,16 +140,27 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Frequently asked questions"
+          style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+
           >
             <span>FAQ</span>
             <span>&#8594;</span>
           </Link>
         </div>
       </div>
-      <div className="footer-row">
+      <div className="footer-row" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
+>
         <div className="footer-header">
-          <h1>AP</h1>
-          <h1>Agency</h1>
+          <h1  style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}
+>AP</h1>
+          <h1 style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}
+>Agency</h1>
         </div>
 
         <div className="footer-copyright-line">

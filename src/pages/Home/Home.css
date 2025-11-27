@@ -86,7 +86,7 @@ html, body {
   line-height: 5.4vw;
   color: var(--bg);
   margin-bottom: 1rem;
-  font-family: "Inter";
+  font-family: "Druk Wide Cy Web Bold Regular";
   display: inline-block;
 }
 
@@ -206,7 +206,7 @@ html, body {
 .butt {
   display: inline-block;
   padding: 1em 2em;
-  background-color: white;
+  background-color: #ebbd7d;
   color: black;
   border: 1px solid black;
   font-family: "Arial", sans-serif;
@@ -244,6 +244,7 @@ html, body {
   letter-spacing: 0.1em;
   font-family: "Inter";
   z-index:2;
+  color:#ebbd7d
 }
 
 .home-work {

@@ -193,16 +193,16 @@ const PricingPackages = () => {
   ];
 
   return (
-    <section className="pricing-packages">
+    <section className="pricing-packages" >
       <div className="container">
         <div className="pricing-header">
-          <h2 className="pricing-title">
+          <h2 className="pricing-title" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>
             We don't sell videos. <span>We sell clicks.</span>
           </h2>
           <p className="pricing-subtitle">
             You want leads? These are the ads that get them.
           </p>
-          <p className="pick-weapon">Pick your weapon:</p>
+          <p className="pick-weapon" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>Pick your weapon:</p>
         </div>
 
         <div className="packages-grid">

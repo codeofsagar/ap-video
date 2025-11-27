@@ -23,35 +23,40 @@ const About = () => {
         </section>
 
         <section className="about-me-copy">
-          <div className="about-me-copy-wrapper">
-            <AnimatedCopy animateOnScroll={true} tag="h3">
-              We are AP Agency, a Toronto based video ad agency built for the fast moving digital world.
-            </AnimatedCopy>
+  <div className="about-me-copy-wrapper">
 
-            <AnimatedCopy animateOnScroll={true} tag="h3">
-              With over seven years in the industry, we deliver the highest quality productions and result driven content.
-            </AnimatedCopy>
+    <AnimatedCopy animateOnScroll={true} tag="h3">
+      We are <span style={{ color: "#ebbd7d" }}>AP Agency</span>, a Toronto based <span style={{ color: "#ebbd7d" }}>video ad agency</span> built for the fast moving digital world.
+    </AnimatedCopy>
 
-            <AnimatedCopy animateOnScroll={true} tag="h3">
-              Attention is everything. People do not watch long commercials anymore — they scroll. That is why we craft sharp, captivating short form videos that stop thumbs and drive action.
-            </AnimatedCopy>
+    <AnimatedCopy animateOnScroll={true} tag="h3">
+      With over seven years in the industry, we deliver the <span style={{ color: "#ebbd7d" }}>highest quality productions</span> and <span style={{ color: "#ebbd7d" }}>result driven content</span>.
+    </AnimatedCopy>
 
-            <AnimatedCopy animateOnScroll={true} tag="h3">
-              Each shoot delivers three unique ads, each twelve to sixteen seconds. Distinct hooks, tailored scripts, crafted captions. All designed to capture attention in the very first second and keep it.
-            </AnimatedCopy>
+    <AnimatedCopy animateOnScroll={true} tag="h3">
+      <span style={{ color: "#ebbd7d" }}>Attention is everything.</span> People do not watch long commercials anymore — they scroll. That is why we craft <span style={{ color: "#ebbd7d" }}>sharp, captivating short form videos</span> that stop thumbs and drive action.
+    </AnimatedCopy>
 
-            <AnimatedCopy animateOnScroll={true} tag="h3">
-              We do not just make ads. We create work that elevates your brand, engages your audience, and delivers measurable results.
-            </AnimatedCopy>
-          </div>
-        </section>
+    <AnimatedCopy animateOnScroll={true} tag="h3">
+      Each shoot delivers <span style={{ color: "#ebbd7d" }}>three unique ads</span>, each twelve to sixteen seconds. Distinct hooks, tailored scripts, crafted captions — all designed to capture attention in the very <span style={{ color: "#ebbd7d" }}>first second</span> and keep it.
+    </AnimatedCopy>
+
+    <AnimatedCopy animateOnScroll={true} tag="h3">
+      We do not just make ads. We create work that <span style={{ color: "#ebbd7d" }}>elevates your brand</span>, <span style={{ color: "#ebbd7d" }}>engages your audience</span>, and <span style={{ color: "#ebbd7d" }}>delivers measurable results</span>.
+    </AnimatedCopy>
+
+  </div>
+</section>
 
         <section className="services">
           <div className="services-col">
             <div className="services-banner">
               <img src="/about/services-banner.jpg" alt="Creative production" />
             </div>
-            <p className="primary lg">What<br />We<br />Deliver</p>
+            <p className="primary lg" style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>What<br />We<br />Deliver</p>
           </div>
           <div className="services-col">
             <h4>
@@ -61,7 +66,10 @@ const About = () => {
             <div className="services-list">
               <div className="service-list-row">
                 <div className="service-list-col">
-                  <h5 className="gold-title">Short Form Video Ads</h5>
+                  <h5 className="gold-title" style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>Short Form Video Ads</h5>
                 </div>
                 <div className="service-list-col">
                   <p className="service-desc">
@@ -72,7 +80,10 @@ const About = () => {
 
               <div className="service-list-row">
                 <div className="service-list-col">
-                  <h5 className="gold-title">Creative Direction</h5>
+                  <h5 className="gold-title" style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>Creative Direction</h5>
                 </div>
                 <div className="service-list-col">
                   <p className="service-desc">
@@ -83,7 +94,10 @@ const About = () => {
 
               <div className="service-list-row">
                 <div className="service-list-col">
-                  <h5 className="gold-title">Post Production</h5>
+                  <h5 style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }} className="gold-title">Post Production</h5>
                 </div>
                 <div className="service-list-col">
                   <p className="service-desc">
@@ -103,7 +117,7 @@ const About = () => {
 
         <section className="fav-tools">
           <div className="fav-tools-header">
-            <AnimatedCopy tag="p" animateOnScroll={true} className="primary sm">
+            <AnimatedCopy tag="p" animateOnScroll={true} className="primary sm" >
               Our Stack
             </AnimatedCopy>
             <AnimatedCopy tag="h2" animateOnScroll={true} delay={0.25}>
@@ -125,14 +139,20 @@ const About = () => {
                 <div className="fav-tool-img">
                   <img src="/work/adobe.jpg" alt="Adobe Premiere Pro" />
                 </div>
-                <h4>Adobe Premiere Pro</h4>
+                <h4 style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>Adobe Premiere Pro</h4>
                 <p className="primary sm">Video Editing</p>
               </div>
               <div className="fav-tool">
                 <div className="fav-tool-img">
                   <img src="/work/after.jpg" alt="Adobe After Effects" />
                 </div>
-                <h4>Adobe After Effects</h4>
+                <h4 style={{
+    fontFamily: "Druk Wide Cy Web Bold Regular",
+    color: "#ebbd7d",
+  }}>Adobe After Effects</h4>
                 <p className="primary sm">Motion Graphics & Visual Effects</p>
               </div>
             </div>
