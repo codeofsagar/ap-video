@@ -1,53 +1,29 @@
-import React, { useState, useRef,useEffect } from 'react';
+import React, { useRef } from 'react';
 import './ContactForm.css';
 
 const ContactForm = () => {
-  const formRef = useRef(null);
   const containerRef = useRef(null); 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submitError, setSubmitError] = useState('');
 
+  // Method 1: Direct Calendly integration (most reliable)
+  const openCalendly = () => {
+    // This will open Calendly in a new tab - most reliable method
+    window.open('https://calendly.com/demo/30min', '_blank', 'width=800,height=600');
+  };
 
-   useEffect(() => {
-    if (submitSuccess && containerRef.current) {
-      containerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [submitSuccess]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    setSubmitSuccess(false);
-
-    try {
-      const formData = new FormData();
-      
-      // Append form fields
-      formData.append('name', formRef.current.name.value);
-      formData.append('email', formRef.current.email.value);
-      formData.append('message', formRef.current.message.value);
-      formData.append('package', formRef.current.package.value);
-
-      const response = await fetch('https://offer.apagency.ca/sendmail.php', {
-        method: 'POST',
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setSubmitSuccess(true);
-        formRef.current.reset();
-      } else {
-        setSubmitError(result.message || 'Failed to send message');
-      }
-    } catch (error) {
-      setSubmitError('Network error. Please try again.');
-      console.error('Submission error:', error);
-    } finally {
-      setIsSubmitting(false);
+  // Method 2: Using Calendly's direct popup method
+  const openCalendlyPopup = () => {
+    // Create Calendly popup manually
+    const calendlyPopup = window.open(
+      'https://calendly.com/demo/30min', 
+      'calendly', 
+      'width=800,height=600,scrollbars=yes,resizable=yes'
+    );
+    
+    if (calendlyPopup) {
+      calendlyPopup.focus();
+    } else {
+      // Fallback to new tab if popup is blocked
+      window.open('https://calendly.com/demo/30min', '_blank');
     }
   };
 
@@ -56,103 +32,78 @@ const ContactForm = () => {
       <div className="contact-form-row">
         <div className="contact-form-row-copy-item">
           <p className="primary lg" style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-  }}>Let's Craft Ads That Convert</p>
+            fontFamily: "Druk Wide Cy Web Bold Regular",
+          }}>Let's Craft Ads That Convert</p>
         </div>
       </div>
 
-      {submitSuccess ? (
-        <div className="success-message">
-          <h3>Thank You!</h3>
-          <p>Your message has been sent successfully. We'll contact you shortly.</p>
+      <div className="contact-form-row calendly-section-row">
+        <div className="contact-form-col">
+          <div className="contact-form-header">
+            <h3 className="consultation-heading" style={{
+              fontFamily: "Druk Wide Cy Web Bold Regular",
+              color: "#ebbd7d",
+            }}>Book a Video Shoot Consultation</h3>
+            <p>
+              Ready to create scroll-stopping content that hooks fast and drives results? 
+              Schedule a free consultation to discuss your project and how we can help 
+              transform your product with killer short-form ads.
+            </p>
+          </div>
         </div>
-      ) : (
-        <form ref={formRef} onSubmit={handleSubmit}>
-          <div className="contact-form-row">
-            <div className="contact-form-col">
-              <div className="contact-form-header">
-                <h3 style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}>Start a Conversation</h3>
-                <p>
-                  Got a product that needs killer short-form ads? 
-                  Let's talk about creating scroll-stopping content that hooks fast 
-                  and drives results.
+
+        <div className="contact-form-col">
+          <div className="calendly-section">
+            <div className="consultation-features">
+              <div className="feature-bullet">
+                <span className="bullet-icon">•</span>
+                <span>15-minute free consultation</span>
+              </div>
+              <div className="feature-bullet">
+                <span className="bullet-icon">•</span>
+                <span>Discuss your project goals</span>
+              </div>
+              <div className="feature-bullet">
+                <span className="bullet-icon">•</span>
+                <span>Get custom package recommendations</span>
+              </div>
+              <div className="feature-bullet">
+                <span className="bullet-icon">•</span>
+                <span>No commitment required</span>
+              </div>
+            </div>
+            
+            <div className="calendly-button-container">
+              <button 
+                className="bt calendly-button"
+                onClick={openCalendlyPopup}
+              >
+                Schedule Free Consultation
+              </button>
+              
+              {/* Alternative: Direct link as backup */}
+              <div className="calendly-direct-link">
+                <p>Or book directly: 
+                  <a 
+                    href="https://calendly.com/demo/30min" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="direct-link"
+                  >
+                    https://calendly.com/demo/30min
+                  </a>
                 </p>
               </div>
             </div>
-
-            <div className="contact-form-col">
-              <div className="form-item">
-                <input 
-                  type="text" 
-                  name="name"
-                  placeholder="Name" 
-                  required 
-                />
-              </div>
-              <div className="form-item">
-                <input 
-                  type="email" 
-                  name="email"
-                  placeholder="Email" 
-                  required 
-                />
-              </div>
-              <div className="form-item">
-                <textarea 
-                  rows={6} 
-                  name="message"
-                  placeholder="Tell us about your project" 
-                  required 
-                />
-              </div>
-              
-              {/* Package Selection */}
-              <div className="form-item">
-                <p className="package-label">Select Package:</p>
-                <div className="package-options">
-                  {['standard', 'pro', 'epic'].map((pkg) => (
-                    <div className="package-option" key={pkg}>
-                      <input 
-                        type="radio" 
-                        name="package" 
-                        id={pkg}
-                        value={pkg}
-                        required 
-                      />
-                      <label htmlFor={pkg}>
-                        {pkg.charAt(0).toUpperCase() + pkg.slice(1)}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {submitError && (
-                <div className="error-message">{submitError}</div>
-              )}
-
-              <div className="form-item">
-                <button 
-                  type="submit"
-                  className="bt"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
-              </div>
-            </div>
           </div>
-        </form>
-      )}
+        </div>
+      </div>
       
       {/* Full-width features section */}
-      <div className="contact-features " style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}>
+      <div className="contact-features" style={{
+        fontFamily: "Druk Wide Cy Web Bold Regular",
+        color: "#ebbd7d",
+      }}>
         <div className="feature-item">
           <p className="primary sm">Available for Brands & Agencies</p>
         </div>
