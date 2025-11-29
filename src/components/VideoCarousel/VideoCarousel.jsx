@@ -392,7 +392,7 @@ const VideoCarousel = () => {
     <>
       <style>{cssStyles}</style>
       <div className="carousel-outer-container" ref={carouselContainer}>
-        <h1 className="section-heading">Our Best Work</h1>
+        <h1 className="section-heading">Content That Stops the Scroll.Every Time</h1>
 
         <div id="slider-track" className="carousel-wrapper">
           {hightlightsSlides.map((list, i) => (
