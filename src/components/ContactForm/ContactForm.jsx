@@ -7,14 +7,14 @@ const ContactForm = () => {
   // Method 1: Direct Calendly integration (most reliable)
   const openCalendly = () => {
     // This will open Calendly in a new tab - most reliable method
-    window.open('https://calendly.com/demo/30min', '_blank', 'width=800,height=600');
+    window.open('https://calendly.com/apdigitalagency/30min', '_blank', 'width=800,height=600');
   };
 
   // Method 2: Using Calendly's direct popup method
   const openCalendlyPopup = () => {
     // Create Calendly popup manually
     const calendlyPopup = window.open(
-      'https://calendly.com/demo/30min', 
+      'https://calendly.com/apdigitalagency/30min', 
       'calendly', 
       'width=800,height=600,scrollbars=yes,resizable=yes'
     );
@@ -57,7 +57,7 @@ const ContactForm = () => {
             <div className="consultation-features">
               <div className="feature-bullet">
                 <span className="bullet-icon">•</span>
-                <span>15-minute free consultation</span>
+                <span>30-minute free consultation</span>
               </div>
               <div className="feature-bullet">
                 <span className="bullet-icon">•</span>
@@ -85,12 +85,12 @@ const ContactForm = () => {
               <div className="calendly-direct-link">
                 <p>Or book directly: 
                   <a 
-                    href="https://calendly.com/demo/30min" 
+                    href="https://calendly.com/apdigitalagency/30min" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="direct-link"
                   >
-                    https://calendly.com/demo/30min
+                   https://calendly.com/apdigitalagency/30min
                   </a>
                 </p>
               </div>

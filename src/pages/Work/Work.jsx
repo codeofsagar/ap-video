@@ -6,46 +6,53 @@ const projects = [
     id: 1,
     title: "Project Delta",
     description: "Interactive educational platform for remote learning",
+    video: "/work/vid4.mp4",
+    thumbnail: "/work/vs.png"
+  },
+  {
+    id: 2,
+    title: "Project Delta",
+    description: "Interactive educational platform for remote learning",
     video: "/work/basic.mp4",
     thumbnail: "/work/basic.png"
   },
   {
-    id: 2,
+    id: 3,
     title: "Project Delta",
     description: "Interactive educational platform for remote learning",
     video: "/work/3xsr.mp4",
     thumbnail: "/work/3x.png"
   },
   {
-    id: 3,
+    id: 4,
     title: "Project Epsilon",
     description: "AI-powered productivity suite",
     video: "/work/pro.mp4",
     thumbnail: "/work/pro.png"
   },
   {
-    id: 4,
+    id: 5,
     title: "Project Zeta",
     description: "Blockchain-based security solution",
     video: "/work/epic.mp4",
     thumbnail: "/work/epic.png"
   },
   {
-    id: 5,
+    id: 6,
     title: "Project Alpha",
     description: "A cutting-edge web application with modern UI",
     video: "/work/vid1.mp4",
     thumbnail: "/work/m1.png"
   },
   {
-    id: 6,
+    id: 7,
     title: "Project Beta",
     description: "Mobile-first e-commerce platform with AR features",
     video: "/work/vid2.mp4",
     thumbnail: "/work/m2.png"
   },
   {
-    id: 7,
+    id: 8,
     title: "Project Gamma",
     description: "Data visualization dashboard for financial analytics",
     video: "/work/vid3.mp4",

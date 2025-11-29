@@ -1,0 +1,157 @@
+:root {
+  --theme-gold: #EBBD7D;
+  --bg-dark-gray: #333; /* Placeholder for background of controls */
+  --inactive-gray: #afafaf;
+}
+
+/* Main Container */
+.carousel-outer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Header Styling */
+.section-heading {
+  color: var(--theme-gold);
+  font-size: 3rem; /* Large cinematic text */
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-family: sans-serif; /* Replace with your project font */
+}
+
+/* Carousel Wrapper */
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow-x: hidden; /* Important for the slider effect */
+}
+
+/* Individual Slide Item */
+.slider-item {
+  padding-right: 2.5rem; /* Equivalent to sm:pr-20 */
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .slider-item {
+    padding-right: 1.25rem; /* Equivalent to pr-10 */
+  }
+}
+
+/* Video Container */
+.video-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem; /* rounded-3xl */
+  overflow: hidden;
+  background-color: black;
+}
+
+/* The Video Element */
+.carousel-video {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video fills the card */
+}
+
+.carousel-video.translate-active {
+  transform: translateX(11rem); /* translate-x-44 logic */
+}
+
+/* Text Overlay */
+.text-overlay {
+  position: absolute;
+  top: 3rem; /* top-12 */
+  left: 5%;
+  z-index: 10;
+}
+
+.text-overlay p {
+  color: var(--theme-gold); /* Applying the theme color to text */
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .text-overlay p {
+    font-size: 1.5rem; /* md:text-2xl */
+  }
+}
+
+/* Controls Container (Progress Bar + Button) */
+.controls-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem; /* mt-10 */
+}
+
+/* Progress Bar Background */
+.progress-bar-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem 1.75rem; /* py-5 px-7 */
+  background-color: rgba(50, 50, 50, 0.5); /* Replaces gray-300 backdrop-blur */
+  backdrop-filter: blur(10px);
+  border-radius: 9999px; /* rounded-full */
+}
+
+/* Individual Dot Container */
+.progress-dot-container {
+  margin: 0 0.5rem; /* mx-2 */
+  width: 0.75rem; /* w-3 */
+  height: 0.75rem; /* h-3 */
+  background-color: #555; /* gray-200 replacement */
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden; /* Keeps the filler inside */
+}
+
+/* The Filling Span inside the Dot */
+.progress-dot-fill {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: var(--theme-gold); /* The filling color */
+}
+
+/* Control Button */
+.control-btn {
+  margin-left: 1rem;
+  padding: 1rem;
+  background-color: rgba(50, 50, 50, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  border: 1px solid var(--theme-gold); /* Added border to match theme */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background-color: var(--theme-gold);
+}
+
+.control-btn img {
+  width: 1rem;
+  height: 1rem;
+}
