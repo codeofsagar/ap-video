@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// Using Skypack for reliable CDN imports of GSAP
 import gsap from "https://cdn.skypack.dev/gsap";
 import { ScrollTrigger } from "https://cdn.skypack.dev/gsap/ScrollTrigger";
 
@@ -9,10 +8,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Icons
 const playImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iNSAzIDE5IDEyIDUgMjEgNSAzIj48L3BvbHlnb24+PC9zdmc+";
-const pauseImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjYiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjE2Ij48L3JlY3Q+PHJlY3QgeD0iMTQiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjE2Ij48L3JlY3Q+PC9zdmc+";
+const pauseImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxyZWN0IHg9IjYiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjE2Ij48L3JlY3Q+PHJlY3QgeD0iMTQiIHk9IjQiIHdpZHRoPSI0IiBoZWlnaHQ9IjE2Ij48L3JlY3Q+PC9zdmc+";
 const replayImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwb2x5bGluZSBwb2ludHM9IjIzIDQgMjMgMTAgMTcgMTAiPjwvcG9seWxpbmU+PHBhdGggZD0iTTIwLjQ5IDE1YTkgOSAwIDEgMS0yLjEyLTkuMzZMMjMgMTAiPjwvcGF0aD48L3N2Zz4=";
-const muteImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iMTEgNSA2IDkgMiA5IDIgMTUgNiAxNSAxMSAxOSAxMSA1Ij48L3BvbHlnb24+PGxpbmUgeDE9IjIzIiB5MT0iOSIgeDI9IjE3IiB5Mj0iMTUiPjwvbGluZT48bGluZSB4MT0iMTciIHkxPSI5IiB4Mj0iMjMiIHkyPSIxNSI+PC9saW5lPjwvc3ZnPg==";
-const unMuteImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iMTEgNSA2IDkgMiA5IDIgMTUgNiAxNSAxMSAxOSAxMSA1Ij48L3BvbHlnb24+PHBhdGggZD0iTTE5LjA3IDQuOTNhMTAgMTAgMCAwIDEgMCAxNC4xNCI+PC9wYXRoPjxwYXRoIGQ9Ik0xNS41NCA4LjQ2YTUgNSAwIDAgMSAwIDcuMDciPjwvcGF0aD48L3N2Zz4=";
+const muteImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iMTEgNSA2IDkgMiA5IDIgMTUgNiAxNSAxMSAxOSAxMSA1Ij48L3BvbHlnb24+PGxpbmUgeDE9IjIzIiB5MT0iOSIgeDI9IjE3IiB5Mj0iMTUiPjwvbGluZT48bGluZSB4MT0iMTciIHkxPSI5IiB4Mj0iMjMiIHkyPSIxNSI+PC9saW5lPjwvc3ZnPg==";
+const unMuteImg = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iMTEgNSA2IDkgMiA5IDIgMTUgNiAxNSAxMSAxOSAxMSA1Ij48L3BvbHlnb24+PHBhdGggZD0iTTE5LjA3IDQuOTNhMTAgMTAgMCAwIDEgMCAxNC4xNCI+PC9wYXRoPjxwYXRoIGQ9Ik0xNS41NCA4LjQ2YTUgNSAwIDAgMSAwIDcuMDciPjwvcGF0aD48L3N2Zz4=";
 
 // Video URLs
 const highlightFirstVideo = "/work/main11.mp4";
@@ -22,21 +21,21 @@ const highlightThirdVideo = "/work/vid4.mp4";
 const hightlightsSlides = [
   {
     id: 1,
-    textLists: ["", "", ""],
+    textLists: ["Cinematic", "Excellence", "Defined"],
     video: highlightFirstVideo,
-    videoDuration: 15, // Force limit to 15s
+    videoDuration: 15,
   },
   {
     id: 2,
-    textLists: [""],
+    textLists: ["Dynamic", "Motion", "Graphics"],
     video: highlightSecondVideo,
-    videoDuration: 15, // Force limit to 15s
+    videoDuration: 15,
   },
   {
     id: 3,
-    textLists: [""],
+    textLists: ["Creative", "Vision", "Realized"],
     video: highlightThirdVideo,
-    videoDuration: 15, // Force limit to 15s
+    videoDuration: 15,
   },
 ];
 
@@ -76,6 +75,14 @@ const cssStyles = `
     margin-bottom: 3rem;
     text-align: center;
     letter-spacing: 0.05em;
+  }
+  
+  /* --- FIX 1: Smaller Main Heading on Mobile --- */
+  @media (max-width: 768px) {
+    .section-heading {
+        font-size: 1.5rem; /* Reduced from 1.8rem */
+        margin-bottom: 2rem;
+    }
   }
 
   .carousel-wrapper {
@@ -139,6 +146,18 @@ const cssStyles = `
     margin: 0;
   }
 
+  /* --- FIX 2: Much Smaller Text on Mobile --- */
+  @media (max-width: 768px) {
+    .text-overlay {
+        top: 1.5rem; /* Higher up */
+        left: 1.5rem; /* Closer to edge */
+    }
+    .text-overlay p {
+        font-size: 0.75rem; /* ~12px, Very small per request */
+        line-height: 1.2;
+    }
+  }
+  
   @media (min-width: 768px) {
     .text-overlay p {
       font-size: 2rem;
@@ -302,7 +321,7 @@ const VideoCarousel = () => {
         anim.restart();
       }
 
-      // --- CRITICAL UPDATE: TIME CHECKER ---
+      // --- TIME CHECKER ---
       const animUpdate = () => {
         const currentVideo = videoRef.current[videoId];
         
@@ -312,11 +331,10 @@ const VideoCarousel = () => {
             currentVideo.currentTime / hightlightsSlides[videoId].videoDuration
           );
 
-          // 2. CHECK IF TIME EXCEEDED 15 SECONDS (or whatever is in config)
+          // 2. CHECK IF TIME EXCEEDED
           if (currentVideo.currentTime >= hightlightsSlides[videoId].videoDuration) {
-             currentVideo.pause(); // Pause immediately to stop it going further
+             currentVideo.pause(); 
              
-             // Trigger next video
              if (videoId < hightlightsSlides.length - 1) {
                 handleProcess("video-end", videoId);
              } else {
@@ -392,7 +410,7 @@ const VideoCarousel = () => {
     <>
       <style>{cssStyles}</style>
       <div className="carousel-outer-container" ref={carouselContainer}>
-        <h1 className="section-heading">Content That Stops the Scroll.Every Time</h1>
+        <h1 className="section-heading">Content That Stops the Scroll</h1>
 
         <div id="slider-track" className="carousel-wrapper">
           {hightlightsSlides.map((list, i) => (
@@ -409,7 +427,6 @@ const VideoCarousel = () => {
                     setVideo((pre) => ({ ...pre, isPlaying: true }))
                   }
                   onLoadedMetadata={(e) => handleLoadedMetaData(i, e)}
-                  // Removed onEnded here because we now handle it in the GSAP ticker
                 >
                   <source src={list.video} type="video/mp4" />
                 </video>
@@ -431,7 +448,13 @@ const VideoCarousel = () => {
                 key={i}
                 className="progress-dot-container"
                 ref={(el) => (videoDivRef.current[i] = el)}
-                onClick={() => handleProcess("video-select", i)}
+                onClick={() => {
+                    if (videoRef.current[i]) {
+                        videoRef.current[i].currentTime = 0;
+                        videoRef.current[i].play();
+                    }
+                    handleProcess("video-select", i);
+                }}
               >
                 <span
                   className="progress-dot-fill"

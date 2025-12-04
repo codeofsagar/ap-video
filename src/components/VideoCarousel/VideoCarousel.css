@@ -16,7 +16,7 @@
 /* Header Styling */
 .section-heading {
   color: var(--theme-gold);
-  font-size: 3rem; /* Large cinematic text */
+  font-size: 2rem; /* Large cinematic text */
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 3rem;

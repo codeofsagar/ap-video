@@ -14,7 +14,7 @@
 .pricing-packages {
   position: relative;
   width: 100%;
-  padding: 8rem 0 6rem;
+  padding: 6rem 0 6rem;
   font-family: "", sans-serif;
   color: var(--text);
   overflow: hidden;
@@ -112,20 +112,20 @@
 /* LEFT COLUMN */
 .card-left {
   flex: 1;
-  padding: 2.2rem 3rem; /* reduced padding */
+  padding: 2.2rem 3rem;
   display: flex;
   flex-direction: column;
 }
 
-/* TITLE AREA FIXED */
+/* TITLE AREA */
 .card-header {
-  margin-bottom: 0.8rem; /* was 1.5 — reduced */
+  margin-bottom: 0.8rem;
 }
 
 .card-title {
   font-size: 2.1rem;
   font-weight: 700;
-  margin-bottom: 0.2rem; /* reduced from 0.5 */
+  margin-bottom: 0.2rem;
   line-height: 1.1;
   font-family: 'Druk Wide Cy Web Bold Regular';
 }
@@ -190,7 +190,7 @@
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 70%);
 }
 
-/* PLAY / PAUSE BUTTON (fixed small on mobile) */
+/* PLAY / PAUSE BUTTON */
 .video-control-play,
 .video-control-pause {
   position: absolute;
@@ -293,7 +293,7 @@
   color: var(--accent);
 }
 
-/* CTA BUTTON */
+/* CTA BUTTON (Desktop) */
 .ctabutt {
   padding: 1.2rem 2.5rem;
   border-radius: 50px;
@@ -308,37 +308,67 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
 
 /* ============ RESPONSIVE FIXES ============ */
 
-/* TABLET */
+/* TABLET AND SMALLER DESKTOP */
 @media (max-width: 1200px) {
   .package-card {
     flex-direction: column;
   }
-  .pricing-title{
+  .pricing-title {
     font-size: 2.3rem;
   }
-
   .card-right {
     min-width: 100%;
+    max-height: 500px; 
+  }
+  .pricing-packages {
+    padding: 6rem 0 5rem;
   }
 }
 
-/* MOBILE */
+/* MOBILE - AGGRESSIVE PADDING & SIZE FIXES */
 @media (max-width: 800px) {
+  .pricing-packages {
+    padding: 2rem 0 3rem; 
+  }
+  
+  .pricing-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  /* Make Package Name smaller on Tablet/Mobile */
+  .card-title {
+    font-size: 1.6rem; /* Reduced from 2.1rem */
+  }
 
   .features-section {
     flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .features-section li {
-    font-size: 1.15rem; /* INCREASED */
+  .card-left {
+    padding: 2rem 1.5rem; 
   }
 
-  .features-column h4 {
-    font-size: 1.35rem; /* INCREASED */
+  .card-bottom {
+    padding: 0 1.5rem 2rem 1.5rem; 
+  }
+
+  /* Compact CTA Button for Mobile */
+  .ctabutt {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    width: 100%; /* Full width looks better on mobile usually */
+    justify-content: center;
   }
 
   .video-control-play,
@@ -353,30 +383,60 @@
   }
 }
 
-/* iPHONE / VERY SMALL SCREEN */
+/* SMALL MOBILE / iPhone */
 @media (max-width: 480px) {
+  .pricing-packages {
+    padding: 1rem 0 2rem;
+  }
+
+  .pricing-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .pricing-header {
+    margin-bottom: 2rem;
+  }
+
+  /* FIX: Smaller Title for Small Screens */
+  .card-title {
+    font-size: 1.3rem; /* Much smaller to fit "Epic Video Package" */
+    line-height: 1.2;
+  }
 
   .card-left {
-    padding: 1.8rem 2rem;
+    padding: 1.5rem 1.25rem; 
   }
 
-  .card-title {
-    font-size: 1.8rem;
+  .card-bottom {
+    padding: 0 1.25rem 1.75rem 1.25rem;
+  }
+  
+  .pick-weapon {
+    font-size: 1.6rem;
+    margin-top: 1rem;
   }
 
-  .features-section li {
-    font-size: 1.15rem; /* bigger now */
+  /* FIX: Compact Buttons */
+  .ctabutt {
+    padding: 0.8rem 1.5rem; /* Very compact padding */
+    font-size: 0.9rem;      /* Smaller text */
+    margin-top: 1.5rem;
   }
-
-  .features-column h4 {
-    font-size: 1.3rem;
-  }
-
+  
+  /* FIX: Smaller Video Button */
   .video-control-play,
   .video-control-pause {
-    width: 38px;
-    height: 38px;
+    width: 32px; /* Smaller play button */
+    height: 32px;
     bottom: 12px;
+  }
+  
+  /* Icon inside Play Button */
+  .video-control-play svg,
+  .video-control-pause svg {
+    width: 20px;
+    height: 20px;
   }
 
   .price {
@@ -385,5 +445,11 @@
 
   .limited-offer {
     font-size: 0.8rem;
+  }
+  
+  .guarantee-box {
+    padding: 1rem;
+    margin-top: 20px;
+    font-size: 0.9rem;
   }
 }

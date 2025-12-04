@@ -271,7 +271,7 @@ html, body {
   align-items: center;
   text-align: center;
   overflow: hidden;
-  margin-top: 1em;
+  margin-top: 4em; /* Increased base margin */
   background-color: #222222;
 }
 
@@ -339,7 +339,7 @@ html, body {
   .hero,
   .results-section,
   .sticky-work-header {
-    padding: 1.2em;
+    padding: 1em;
   }
 
   .hero-content {
@@ -372,7 +372,6 @@ html, body {
     height: 350px;
   }
   
-  /* Mobile hero-sub adjustments */
   .hero-sub {
     font-size: 1.2em;
     transform: translateY(10%);
@@ -385,14 +384,13 @@ html, body {
 
 /* MOBILE FIXES */
 @media (max-width: 768px) {
-  /* New Results Section Mobile */
   .results-section {
     min-height: auto;
     padding: 4em 1.5em;
   }
 
   .impact-title {
-    font-size: 10vw; /* Bigger on mobile */
+    font-size: 10vw;
     line-height: 1.1;
   }
   
@@ -406,7 +404,7 @@ html, body {
   }
   
   .gold-highlight {
-    display: block; /* Stack it on mobile for emphasis */
+    display: block;
     margin-top: 10px;
     font-size: 1.2em;
   }
@@ -417,7 +415,7 @@ html, body {
   }
 
   .vertical-line {
-    height: 40px !important; /* Force override for animation end state check */
+    height: 40px !important;
   }
 
   /* Existing Mobile Styles */
@@ -425,10 +423,11 @@ html, body {
     height: auto !important;
     min-height: auto;
     margin-top: 0;
-    padding: 1.5em 1em;
+    /* --- FIX 1: Added significant padding-top for spacing --- */
+    padding: 4rem 1em 1.5em 1em; 
     position: relative;
     transform: none !important;
-    font-size: 0.3em;
+    font-size: 0.1em;
   }
   
   .hero {
@@ -478,9 +477,9 @@ html, body {
   .sticky-work-header h1 {
     letter-spacing: 0.05em;
     opacity: 0.8;
+    font-size: 2rem;
   }
   
-  /* Mobile hero-sub adjustments */
   .hero-sub {
     position: static;
     display: block;
@@ -523,12 +522,14 @@ html, body {
     height: 250px;
   }
   
+  /* --- FIX 2: Added Padding Top for Small Screens --- */
   .sticky-work-header {
-    padding: 1em;
+    padding: 3rem 1em 1em 1em; 
   }
   
   .sticky-work-header h1 {
-    font-size: 12vw;
+    font-size: 1.3rem; 
+    line-height: 1.4;
   }
   
   .home-work-list {
@@ -540,7 +541,6 @@ html, body {
     margin-top: 2em;
   }
   
-  /* Mobile hero-sub adjustments */
   .hero-sub {
     font-size: 1em;
     margin-top: -0.4em;
