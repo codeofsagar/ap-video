@@ -154,7 +154,7 @@ const Home = () => {
                   and start clicking.
                 </p>
                 <p className="impact-line sub-statement">
-                  // No Fluff. Just Results.
+                   No Fluff. Just Results.
                 </p>
               </div>
             </div>

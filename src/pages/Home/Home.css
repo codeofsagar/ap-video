@@ -141,92 +141,138 @@ html, body {
   margin-top: 4em;
 }
 
-/* --- NEW RESULTS SECTION STYLING --- */
+/* -------------------------------------------------------- */
+/* --- RESULTS SECTION (STRICTLY CENTERED) --- */
+/* -------------------------------------------------------- */
+
 .results-section {
   width: 100%;
-  min-height: 80vh; /* Gives it breathing room */
-  padding: 6em 2em;
+  padding: 8em 2em; 
   display: flex;
+  flex-direction: column; /* Ensures vertical stacking */
   justify-content: center;
-  align-items: center;
-  background-color: #0A0A0A;
+  align-items: center; /* Horizontally centers content */
+  background-color: #050505;
   position: relative;
   overflow: hidden;
+  text-align: center; /* Backup centering */
 }
 
 .impact-container {
-  max-width: 1200px;
+  max-width: 1600px; 
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3em;
+  align-items: center; /* CENTERS CHILDREN */
+  justify-content: center;
+  gap: 3em; 
   text-align: center;
 }
 
-/* BIG TITLE */
+/* --- THE HEADLINES --- */
+
+.impact-title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align title parts */
+  justify-content: center;
+  line-height: 0.9; 
+  margin-bottom: 2em; 
+}
+
 .impact-title {
   font-family: "Druk Wide Cy Web Bold Regular";
-  font-size: 6vw;
-  line-height: 0.9;
-  color: #fff;
+  font-size: clamp(1rem, 1.5vw, 1.5rem); 
+  color: #ffffff;
+  letter-spacing: 0.3em; 
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  text-align: center;
 }
 
-/* Hollow text effect */
 .outline-text {
+  display: block;
+  font-family: "Druk Wide Cy Web Bold Regular";
+  font-size: clamp(3rem, 8vw, 8rem); 
   color: transparent;
-  -webkit-text-stroke: 1px #ebbd7d; /* Gold Stroke */
-  opacity: 0.9;
+  -webkit-text-stroke: 1px #ebbd7d; 
+  opacity: 1;
+  text-transform: uppercase;
+  margin-top: 0.2em; 
+  text-align: center;
+  width: 100%;
 }
 
-/* Layout for the bottom paragraph part */
+/* --- THE PARAGRAPH SECTION --- */
+
 .impact-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2em;
-  margin-top: 1em;
+  align-items: center; /* FORCES CENTER ALIGNMENT */
+  justify-content: center;
+  width: 100%;
+  max-width: 100%; 
+  text-align: center;
 }
 
-/* A decorative gold line */
 .vertical-line {
-  width: 2px;
-  height: 60px;
-  background-color: #ebbd7d;
+  display: none; 
 }
 
-.text-stack {
-  max-width: 800px;
-}
-
+/* 1. "We engineer..." */
 .main-statement {
-  font-family: "Inter", sans-serif;
-  font-size: 2vw;
-  color: #b0b0b0; /* Light grey for readability */
-  line-height: 1.4;
-  font-weight: 400;
-  margin-bottom: 1.5em;
+  font-family: "Inter", sans-serif; 
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem); 
+  color: #cccccc;
+  line-height: 1.6;
+  font-weight: 500;
+  width: 100%;
+  max-width: 1400px; 
+  text-align: center; /* Ensures text is centered */
+  margin: 0 auto; /* Centers the block itself */
 }
 
+/* 2. "STOP SCROLLING" - Own Line, Gold Box */
 .gold-highlight {
+  display: block; 
+  width: fit-content; 
+  
+  /* STRICT CENTERING MAGIC */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  
+  background-color: #ebbd7d; 
+  color: #000000; 
+  
   font-family: "Druk Wide Cy Web Bold Regular";
-  color: #ebbd7d;
-  font-size: 1.1em;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 5px;
+  font-size: 1.2em; 
+  padding: 0.2em 0.5em; 
+  
+  transform: skew(-10deg); 
+  text-transform: uppercase;
+  text-align: center;
 }
 
+/* 3. "// NO FLUFF" - HUGE & GOLD */
 .sub-statement {
-  font-family: "Druk Wide Cy Web Bold Regular";
-  font-size: 1.2vw;
-  color: #ebbd7d;
-  letter-spacing: 0.1em;
+  display: block; /* Ensures it takes width to center */
+  width: 100%;
+  text-align: center; /* Centers the text inside */
+  
+  font-family: "Druk Wide Cy Web Bold Regular"; 
+  font-size: clamp(2rem, 5vw, 5rem); 
+  color: #ebbd7d; 
+  margin-top: 1.5em; 
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0.8;
+  line-height: 1;
 }
+
+/* -------------------------------------------------------- */
+/* --- END RESULTS SECTION --- */
+/* -------------------------------------------------------- */
 
 /* Reviews Section */
 .reviews-section {
@@ -271,7 +317,7 @@ html, body {
   align-items: center;
   text-align: center;
   overflow: hidden;
-  margin-top: 4em; /* Increased base margin */
+  margin-top: 4em; 
   background-color: #222222;
 }
 
@@ -385,45 +431,38 @@ html, body {
 /* MOBILE FIXES */
 @media (max-width: 768px) {
   .results-section {
-    min-height: auto;
-    padding: 4em 1.5em;
+    padding: 6em 1.5em;
   }
 
   .impact-title {
-    font-size: 10vw;
-    line-height: 1.1;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
   }
   
   .outline-text {
+    font-size: 3rem; 
     -webkit-text-stroke: 1px #ebbd7d;
   }
 
   .main-statement {
-    font-size: 4vw;
+    font-size: 1.2rem;
     line-height: 1.5;
   }
   
   .gold-highlight {
-    display: block;
-    margin-top: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
+    margin: 10px auto; /* Ensures centering on mobile too */
   }
-
+  
   .sub-statement {
-    font-size: 3.5vw;
-    margin-top: 1em;
+    font-size: 2rem;
+    line-height: 1.1;
   }
 
-  .vertical-line {
-    height: 40px !important;
-  }
-
-  /* Existing Mobile Styles */
   .sticky-work-header {
     height: auto !important;
     min-height: auto;
     margin-top: 0;
-    /* --- FIX 1: Added significant padding-top for spacing --- */
     padding: 4rem 1em 1.5em 1em; 
     position: relative;
     transform: none !important;
@@ -522,7 +561,6 @@ html, body {
     height: 250px;
   }
   
-  /* --- FIX 2: Added Padding Top for Small Screens --- */
   .sticky-work-header {
     padding: 3rem 1em 1em 1em; 
   }

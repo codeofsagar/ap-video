@@ -123,7 +123,7 @@ const PricingPackages = () => {
     {
       title: "STANDARD Video Package",
       subtitle: "The Scrappy Killer",
-      description: "High-performing ads from your raw footage. Fast. Cheap. Deadly.",
+      description: "High-performing ads from your raw footage. Fast. Affordable Cinematics. Deadly.",
       who: [
         "You've got an iPhone or someone who can film.",
         "You want real results without spending big.",
