@@ -20,6 +20,13 @@ const Home = () => {
   const homeWorkRef = useRef(null);
   const resultsSectionRef = useRef(null);
 
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Header/Display
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Branded/Console
+    body: { fontFamily: "'Inter', sans-serif" }, // Plain text
+  };
+
   // --- 1. Sticky Header Animation Logic ---
   useEffect(() => {
     const workHeaderSection = stickyWorkHeaderRef.current;
@@ -104,7 +111,7 @@ const Home = () => {
 
   return (
     <ReactLenis root>
-      <div className="page home">
+      <div className="page home" style={fonts.body}>
         {/* Hero Section */}
         <section className="hero">
           <div className="hero-video">
@@ -116,21 +123,29 @@ const Home = () => {
 
           <div className="hero-content">
             <div className="hero-title-wrapper">
-              <h1>AdCraft</h1>
-              <h3 className="hero-sub">
-                BY <span style={{ fontFamily: 'Druk Wide Cy Web Bold Regular', color: "#ebbd7d" }}>AP AGENCY</span>
+              {/* Kanit Bold for Main Title */}
+              <h1 style={fonts.display}>AdCraft</h1>
+              
+              {/* IBM Plex Mono for Agency Branding */}
+              <h3 className="hero-sub" style={fonts.mono}>
+                BY <span style={{ color: "#ebbd7d" }}>AP AGENCY</span>
               </h3>
             </div>
             
-            <p className="hero-line" style={{ color: "#ebbd7d" }}>
+            {/* Inter for descriptive text */}
+            <p className="hero-line" style={{ ...fonts.body, color: "#ebbd7d" }}>
               High-performance video ads for brands and creators.
             </p>
-            <Link to="/contact" className="butt">
+            
+            <Link to="/contact" className="butt" style={fonts.mono}>
               Get Started
             </Link>
+            
             <div className="hero-text">
-              <p className="hero-line">You've Got 1 Second to Hook.</p>
-              <p className="hero-highlight" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular', color: "#ebbd7d" }}>
+              <p className="hero-line" style={fonts.body}>You've Got 1 Second to Hook.</p>
+              
+              {/* IBM Plex Mono for the "Punchline" console style */}
+              <p className="hero-highlight" style={{ ...fonts.mono, color: "#ebbd7d" }}>
                 We Give You 3 Ads That Hit Like Brass Knuckles.
               </p>
             </div>
@@ -140,20 +155,22 @@ const Home = () => {
         {/* --- STYLISH RESULTS SECTION --- */}
         <section ref={resultsSectionRef} className="results-section demo">
           <div className="impact-container">
-            <h2 className="impact-title">
+            {/* Kanit Bold for Section Title */}
+            <h2 className="impact-title" style={fonts.display}>
               NOBODY WATCHES <br />
-              <span className="outline-text">60-SECOND ADS</span>
+              <span className="outline-text" style={fonts.display}>60-SECOND ADS</span>
             </h2>
             
             <div className="impact-content">
               <div className="vertical-line"></div>
               <div className="text-stack">
-                <p className="impact-line main-statement">
+                {/* Inter for body copy */}
+                <p className="impact-line main-statement" style={fonts.body}>
                   We engineer short, creative chaos that forces the world to
-                  <span className="gold-highlight"> STOP SCROLLING </span> 
+                  <span className="gold-highlight" style={fonts.display}> STOP SCROLLING </span> 
                   and start clicking.
                 </p>
-                <p className="impact-line sub-statement">
+                <p className="impact-line sub-statement" style={fonts.mono}>
                    No Fluff. Just Results.
                 </p>
               </div>
@@ -175,24 +192,27 @@ const Home = () => {
         
         {/* Work Showcase Section */}
         <section ref={stickyWorkHeaderRef} className="sticky-work-header">
-          <h1 style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>Choose Your Video Package</h1>
+           {/* Kanit Bold for Work Header */}
+          <h1 style={fonts.display}>Choose Your Video Package</h1>
         </section>
 
         <section ref={homeWorkRef} className="home-work">
           <div className="home-work-list">
             {workItems.map((work, index) => (
               <div key={work.id} className="home-work-item">
-                <h3 style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>{work.title}</h3>
+                {/* Kanit Bold for Project Titles */}
+                <h3 style={fonts.display}>{work.title}</h3>
                 <div className="work-item-video">
                   <video autoPlay loop muted playsInline>
                     <source src={work.video} type="video/mp4" />
                   </video>
                 </div>
-                <h4 style={{ color: "#ebbd7d" }}>{work.category}</h4>
+                {/* IBM Plex Mono for Categories */}
+                <h4 style={{ ...fonts.mono, color: "#ebbd7d" }}>{work.category}</h4>
               </div>
             ))}
           </div>
-          <Link to="/portfolio" className="butt see-all">
+          <Link to="/portfolio" className="butt see-all" style={fonts.mono}>
             See All Works
           </Link>
         </section>

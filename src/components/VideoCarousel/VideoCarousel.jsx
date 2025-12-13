@@ -51,7 +51,8 @@ const cssStyles = `
     margin: 0;
     padding: 0;
     background-color: var(--bg-dark);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    /* Applied Inter via Fonts Object, but kept here as fallback */
+    font-family: 'Inter', sans-serif; 
     width: 100%;
     overflow-x: hidden;
   }
@@ -70,6 +71,8 @@ const cssStyles = `
   .section-heading {
     color: var(--theme-gold);
     font-size: 3rem;
+    /* Kanit Bold applied via style prop and here */
+    font-family: 'Kanit', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 3rem;
@@ -140,6 +143,8 @@ const cssStyles = `
 
   .text-overlay p {
     color: var(--theme-gold);
+    /* IBM Plex Mono applied via style prop and here */
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 1.5rem;
     font-weight: 600;
     line-height: 1.4;
@@ -248,6 +253,13 @@ const VideoCarousel = () => {
   const [loadedData, setLoadedData] = useState([]);
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying, isMuted } = video;
 
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
+    mono: { fontFamily: "'IBM Plex Mono', monospace" },
+    body: { fontFamily: "'Inter', sans-serif" },
+  };
+
   // ANIMATION LOGIC
   useEffect(() => {
     let ctx = gsap.context(() => {
@@ -336,9 +348,9 @@ const VideoCarousel = () => {
              currentVideo.pause(); 
              
              if (videoId < hightlightsSlides.length - 1) {
-                handleProcess("video-end", videoId);
+               handleProcess("video-end", videoId);
              } else {
-                handleProcess("video-last");
+               handleProcess("video-last");
              }
           }
         }
@@ -409,8 +421,9 @@ const VideoCarousel = () => {
   return (
     <>
       <style>{cssStyles}</style>
-      <div className="carousel-outer-container" ref={carouselContainer}>
-        <h1 className="section-heading">Content That Stops the Scroll</h1>
+      <div className="carousel-outer-container" ref={carouselContainer} style={fonts.body}>
+        {/* Kanit Bold for the Header */}
+        <h1 className="section-heading" style={fonts.display}>Content That Stops the Scroll</h1>
 
         <div id="slider-track" className="carousel-wrapper">
           {hightlightsSlides.map((list, i) => (
@@ -433,7 +446,8 @@ const VideoCarousel = () => {
 
                 <div className="text-overlay">
                   {list.textLists.map((text, idx) => (
-                    <p key={idx}>{text}</p>
+                    // IBM Plex Mono for Overlay Text
+                    <p key={idx} style={fonts.mono}>{text}</p>
                   ))}
                 </div>
               </div>

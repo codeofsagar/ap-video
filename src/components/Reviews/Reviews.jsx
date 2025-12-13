@@ -8,190 +8,196 @@ import gsap from "gsap";
 import { BiSolidQuoteLeft } from "react-icons/bi";
 
 const Reviews = () => {
-const [activeReview, setActiveReview] = useState(0);
-const reviewsContainerRef = useRef(null);
-const initialRenderRef = useRef(true);
-const animationInProgressRef = useRef(false);
-const hasInitialClickRef = useRef(false);
+  const [activeReview, setActiveReview] = useState(0);
+  const reviewsContainerRef = useRef(null);
+  const initialRenderRef = useRef(true);
+  const animationInProgressRef = useRef(false);
+  const hasInitialClickRef = useRef(false);
 
-useEffect(() => {
-if (initialRenderRef.current) {
-initialRenderRef.current = false;
-return;
-}
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Headers
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Author / Tech
+    body: { fontFamily: "'Inter', sans-serif" }, // Review Copy
+  };
 
-
-if (animationInProgressRef.current) return;
-animationInProgressRef.current = true;
-
-const currentReviewItems = document.querySelectorAll(".review-item");
-if (currentReviewItems.length > 0) {
-  if (!hasInitialClickRef.current) {
-    hasInitialClickRef.current = true;
-    const initialReviewCopy =
-      currentReviewItems[0].querySelector("#review-copy");
-    const initialReviewAuthor =
-      currentReviewItems[0].querySelector("#review-author");
-
-    if (initialReviewCopy && initialReviewAuthor) {
-      new SplitType(initialReviewCopy, {
-        types: "lines",
-        lineClass: "line",
-      });
-
-      new SplitType(initialReviewAuthor, {
-        types: "lines",
-        lineClass: "line",
-      });
-
-      initialReviewCopy.querySelectorAll(".line").forEach((line) => {
-        const content = line.innerHTML;
-        line.innerHTML = `<span>${content}</span>`;
-      });
-
-      initialReviewAuthor.querySelectorAll(".line").forEach((line) => {
-        const content = line.innerHTML;
-        line.innerHTML = `<span>${content}</span>`;
-      });
+  useEffect(() => {
+    if (initialRenderRef.current) {
+      initialRenderRef.current = false;
+      return;
     }
-  }
 
-  const currentReview = currentReviewItems[currentReviewItems.length - 1];
-  const lineSpans = currentReview.querySelectorAll(".line span");
+    if (animationInProgressRef.current) return;
+    animationInProgressRef.current = true;
 
-  gsap.to(lineSpans, {
-    yPercent: -110,
-    duration: 0.7,
-    stagger: 0.05,
-    ease: "power4.in",
-  });
-}
+    const currentReviewItems = document.querySelectorAll(".review-item");
+    if (currentReviewItems.length > 0) {
+      if (!hasInitialClickRef.current) {
+        hasInitialClickRef.current = true;
+        const initialReviewCopy =
+          currentReviewItems[0].querySelector("#review-copy");
+        const initialReviewAuthor =
+          currentReviewItems[0].querySelector("#review-author");
 
-const newReviewItem = document.createElement("div");
-newReviewItem.className = "review-item";
+        if (initialReviewCopy && initialReviewAuthor) {
+          new SplitType(initialReviewCopy, {
+            types: "lines",
+            lineClass: "line",
+          });
 
-newReviewItem.innerHTML = `
-  <h4 id="review-copy">${reviews[activeReview].copy}</h4>
-  <h4 id="review-author">- ${reviews[activeReview].author}</h4>
-`;
+          new SplitType(initialReviewAuthor, {
+            types: "lines",
+            lineClass: "line",
+          });
 
-if (reviewsContainerRef.current) {
-  reviewsContainerRef.current.appendChild(newReviewItem);
+          initialReviewCopy.querySelectorAll(".line").forEach((line) => {
+            const content = line.innerHTML;
+            line.innerHTML = `<span>${content}</span>`;
+          });
 
-  const newReviewCopy = newReviewItem.querySelector("#review-copy");
-  const newReviewAuthor = newReviewItem.querySelector("#review-author");
-
-  new SplitType(newReviewCopy, {
-    types: "lines",
-    lineClass: "line",
-  });
-
-  new SplitType(newReviewAuthor, {
-    types: "lines",
-    lineClass: "line",
-  });
-
-  const newLineSpans = [];
-
-  newReviewCopy.querySelectorAll(".line").forEach((line) => {
-    const content = line.innerHTML;
-    line.innerHTML = `<span>${content}</span>`;
-    newLineSpans.push(line.querySelector("span"));
-  });
-
-  newReviewAuthor.querySelectorAll(".line").forEach((line) => {
-    const content = line.innerHTML;
-    line.innerHTML = `<span>${content}</span>`;
-    newLineSpans.push(line.querySelector("span"));
-  });
-
-  gsap.set(newLineSpans, { yPercent: 110 });
-
-  gsap.to(newLineSpans, {
-    yPercent: 0,
-    duration: 0.7,
-    stagger: 0.1,
-    ease: "power4.out",
-    delay: 0.7,
-    onComplete: () => {
-      const reviewItems = document.querySelectorAll(".review-item");
-      if (reviewItems.length > 1) {
-        for (let i = 0; i < reviewItems.length - 1; i++) {
-          reviewItems[i].remove();
+          initialReviewAuthor.querySelectorAll(".line").forEach((line) => {
+            const content = line.innerHTML;
+            line.innerHTML = `<span>${content}</span>`;
+          });
         }
       }
-      animationInProgressRef.current = false;
-    },
-  });
-}
 
+      const currentReview = currentReviewItems[currentReviewItems.length - 1];
+      const lineSpans = currentReview.querySelectorAll(".line span");
 
-}, [activeReview]);
+      gsap.to(lineSpans, {
+        yPercent: -110,
+        duration: 0.7,
+        stagger: 0.05,
+        ease: "power4.in",
+      });
+    }
 
-const handleReviewClick = (index) => {
-if (index !== activeReview && !animationInProgressRef.current) {
-setActiveReview(index);
-}
-};
+    // --- Dynamic Element Creation ---
+    const newReviewItem = document.createElement("div");
+    newReviewItem.className = "review-item";
 
-return (
-<section
-className="reviews"
-ref={reviewsContainerRef}
-style={{
-    backgroundImage: `url(${reviews[activeReview].image})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
-{/* Dark overlay for better text readability */}
-<div className="reviews-overlay"></div>
+    // INJECT FONTS HERE MANUALLY SO ANIMATION HAS CORRECT STYLE
+    newReviewItem.innerHTML = `
+      <h4 id="review-copy" style="font-family: 'Inter', sans-serif">${reviews[activeReview].copy}</h4>
+      <h4 id="review-author" style="font-family: 'IBM Plex Mono', monospace">- ${reviews[activeReview].author}</h4>
+    `;
 
+    if (reviewsContainerRef.current) {
+      reviewsContainerRef.current.appendChild(newReviewItem);
 
-  <div className="reviews-header">
-    <h2 className="reviews-title" style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}>SEE WHAT OUR CLIENTS SAID</h2>
-  </div>
-  
-  <h3 id="quote-icon">
-    <BiSolidQuoteLeft />
-  </h3>
+      const newReviewCopy = newReviewItem.querySelector("#review-copy");
+      const newReviewAuthor = newReviewItem.querySelector("#review-author");
 
-  <div className="review-item">
-    <h4 id="review-copy">{reviews[activeReview].copy}</h4>
-    <h4 id="review-author" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>- {reviews[activeReview].author}</h4>
-  </div>
+      new SplitType(newReviewCopy, {
+        types: "lines",
+        lineClass: "line",
+      });
 
-  <div className="reviews-list">
-    {reviews.map((review, index) => (
-      <div
-        key={review.id}
-        className={`review-thumbnail ${
-          index === activeReview ? "active" : ""
-        }`}
-        onClick={() => handleReviewClick(index)}
-      >
-        <div className="thumbnail-image-container">
-          <img 
-            src={review.image} 
-            alt={`Review by ${review.author}`} 
-            className="thumbnail-image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.parentNode.style.display = "none";
-            }}
-          />
-        </div>
+      new SplitType(newReviewAuthor, {
+        types: "lines",
+        lineClass: "line",
+      });
+
+      const newLineSpans = [];
+
+      newReviewCopy.querySelectorAll(".line").forEach((line) => {
+        const content = line.innerHTML;
+        line.innerHTML = `<span>${content}</span>`;
+        newLineSpans.push(line.querySelector("span"));
+      });
+
+      newReviewAuthor.querySelectorAll(".line").forEach((line) => {
+        const content = line.innerHTML;
+        line.innerHTML = `<span>${content}</span>`;
+        newLineSpans.push(line.querySelector("span"));
+      });
+
+      gsap.set(newLineSpans, { yPercent: 110 });
+
+      gsap.to(newLineSpans, {
+        yPercent: 0,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: "power4.out",
+        delay: 0.7,
+        onComplete: () => {
+          const reviewItems = document.querySelectorAll(".review-item");
+          if (reviewItems.length > 1) {
+            for (let i = 0; i < reviewItems.length - 1; i++) {
+              reviewItems[i].remove();
+            }
+          }
+          animationInProgressRef.current = false;
+        },
+      });
+    }
+  }, [activeReview]);
+
+  const handleReviewClick = (index) => {
+    if (index !== activeReview && !animationInProgressRef.current) {
+      setActiveReview(index);
+    }
+  };
+
+  return (
+    <section
+      className="reviews"
+      ref={reviewsContainerRef}
+      style={{
+        backgroundImage: `url(${reviews[activeReview].image})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        ...fonts.body // Default font
+      }}
+    >
+      {/* Dark overlay for better text readability */}
+      <div className="reviews-overlay"></div>
+
+      <div className="reviews-header">
+        {/* Kanit for Title */}
+        <h2 className="reviews-title" style={{ ...fonts.display, color: "#ebbd7d" }}>
+          SEE WHAT OUR CLIENTS SAID
+        </h2>
       </div>
-    ))}
-  </div>
-</section>
+      
+      <h3 id="quote-icon">
+        <BiSolidQuoteLeft />
+      </h3>
 
+      <div className="review-item">
+        {/* Inter for Copy */}
+        <h4 id="review-copy" style={fonts.body}>{reviews[activeReview].copy}</h4>
+        {/* IBM Plex Mono for Author */}
+        <h4 id="review-author" style={fonts.mono}>- {reviews[activeReview].author}</h4>
+      </div>
 
-);
+      <div className="reviews-list">
+        {reviews.map((review, index) => (
+          <div
+            key={review.id}
+            className={`review-thumbnail ${
+              index === activeReview ? "active" : ""
+            }`}
+            onClick={() => handleReviewClick(index)}
+          >
+            <div className="thumbnail-image-container">
+              <img 
+                src={review.image} 
+                alt={`Review by ${review.author}`} 
+                className="thumbnail-image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.parentNode.style.display = "none";
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Reviews;

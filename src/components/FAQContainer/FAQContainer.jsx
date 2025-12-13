@@ -11,6 +11,13 @@ const FAQContainer = ({ title = true, fullWidth = false }) => {
   const contentRefs = useRef([]);
   const faqItemsRef = useRef([]);
 
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Section Headers
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Questions / Console Style
+    body: { fontFamily: "'Inter', sans-serif" }, // Answers / Plain text
+  };
+
   useEffect(() => {
     iconRefs.current = iconRefs.current.slice(0, faqItems.length);
     contentRefs.current = contentRefs.current.slice(0, faqItems.length);
@@ -78,7 +85,13 @@ const FAQContainer = ({ title = true, fullWidth = false }) => {
       <div className={`faq-wrapper ${fullWidth ? "full-width" : "contained"}`}>
         {title && (
           <div className="faq-title">
-            <AnimatedCopy tag="h3" animateOnScroll={false} delay={1}>
+            {/* Kanit for the Main Header */}
+            <AnimatedCopy 
+              tag="h3" 
+              animateOnScroll={false} 
+              delay={1}
+              style={fonts.display}
+            >
               Frequently <br /> Asked Questions
             </AnimatedCopy>
           </div>
@@ -92,7 +105,8 @@ const FAQContainer = ({ title = true, fullWidth = false }) => {
               ref={(el) => (faqItemsRef.current[index] = el)}
             >
               <div className="faq-question" onClick={() => toggleFAQ(index)}>
-                <h3>{item.question}</h3>
+                {/* IBM Plex Mono for the Question (Technical/Console Query vibe) */}
+                <h3 style={fonts.mono}>{item.question}</h3>
                 <span
                   className="faq-icon"
                   ref={(el) => (iconRefs.current[index] = el)}
@@ -105,7 +119,8 @@ const FAQContainer = ({ title = true, fullWidth = false }) => {
                 ref={(el) => (contentRefs.current[index] = el)}
                 style={{ height: 0, opacity: 0, overflow: "hidden" }}
               >
-                <p>{item.answer}</p>
+                {/* Inter for the readable answer text */}
+                <p style={fonts.body}>{item.answer}</p>
               </div>
             </div>
           ))}

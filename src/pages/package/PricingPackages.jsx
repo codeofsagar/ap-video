@@ -4,7 +4,7 @@ import { MdArrowOutward, MdPlayCircle, MdPauseCircle } from 'react-icons/md';
 import './PricingPackages.css';
 import { Link } from "react-router-dom";
 
-const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos }) => {
+const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos, fonts }) => {
   const videoId = `video-${pkg.title.replace(/\s+/g, '-')}`;
   
   useEffect(() => {
@@ -26,29 +26,36 @@ const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos }) => {
   };
 
   return (
-    <div className="package-card">
+    <div className="package-card" style={fonts.body}>
       <div className="card-left">
         <div className="card-header">
-          <h3 className="card-title">{pkg.title}</h3>
-          <p className="card-subtitle">{pkg.subtitle}</p>
+          {/* Kanit for Package Title */}
+          <h3 className="card-title" style={fonts.display}>{pkg.title}</h3>
+          
+          {/* IBM Plex Mono for the Cool Subtitle */}
+          <p className="card-subtitle" style={{ ...fonts.mono, color: "#ebbd7d" }}>{pkg.subtitle}</p>
         </div>
         
         <div className="card-description">
-          <p>{pkg.description}</p>
+          <p style={fonts.body}>{pkg.description}</p>
         </div>
         
         <div className="price-container">
-          <span className="price">${pkg.price}</span>
+          {/* Kanit for the big Price number */}
+          <span className="price" style={fonts.display}>${pkg.price}</span>
           {pkg.originalPrice && (
-            <span className="original-price">${pkg.originalPrice}</span>
+            <span className="original-price" style={fonts.body}>${pkg.originalPrice}</span>
           )}
-          <p className="limited-offer">Limited Time Offer</p>
+          
+          {/* IBM Plex Mono for the offer tag */}
+          <p className="limited-offer" style={fonts.mono}>Limited Time Offer</p>
         </div>
         
         <div className="features-section">
           <div className="features-column">
-            <h4>Who it's for:</h4>
-            <ul>
+            {/* IBM Plex Mono for Section Headers */}
+            <h4 style={fonts.mono}>Who it's for:</h4>
+            <ul style={fonts.body}>
               {pkg.who.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
@@ -56,8 +63,8 @@ const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos }) => {
           </div>
           
           <div className="features-column">
-            <h4>What You Get:</h4>
-            <ul>
+            <h4 style={fonts.mono}>What You Get:</h4>
+            <ul style={fonts.body}>
               {pkg.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
               ))}
@@ -92,13 +99,15 @@ const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos }) => {
       
       <div className="card-bottom">
         <div className="guarantee-box">
-          <div className="guarantee-title">Performance Promise:</div>
-          <p>{pkg.guarantee}</p>
+          {/* IBM Plex Mono for Guarantee Label */}
+          <div className="guarantee-title" style={{ ...fonts.mono, color: "#ebbd7d" }}>Performance Promise:</div>
+          <p style={fonts.body}>{pkg.guarantee}</p>
         </div>
         
         <Link 
           to="/contact" 
           className="ctabutt"
+          style={fonts.mono}
         >
           Get {pkg.title.split(' ')[0]}
           <MdArrowOutward size={20} />
@@ -110,6 +119,13 @@ const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos }) => {
 
 const PricingPackages = () => {
   const [playingVideo, setPlayingVideo] = useState(null);
+
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Headers
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Branded/Technical
+    body: { fontFamily: "'Inter', sans-serif" }, // Plain text
+  };
 
   const pauseAllVideos = () => {
     setPlayingVideo(null);
@@ -193,16 +209,19 @@ const PricingPackages = () => {
   ];
 
   return (
-    <section className="pricing-packages" >
+    <section className="pricing-packages" style={fonts.body}>
       <div className="container">
         <div className="pricing-header">
-          <h2 className="pricing-title" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>
+          {/* Kanit for the Main Statement */}
+          <h2 className="pricing-title" style={fonts.display}>
             We don't sell videos. <span>We sell clicks.</span>
           </h2>
-          <p className="pricing-subtitle">
+          {/* Inter for the sub */}
+          <p className="pricing-subtitle" style={fonts.body}>
             You want leads? These are the ads that get them.
           </p>
-          <p className="pick-weapon" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}>Pick your weapon:</p>
+          {/* IBM Plex Mono for the Console Command */}
+          <p className="pick-weapon" style={{ ...fonts.mono, color: "#ebbd7d" }}>Pick your weapon:</p>
         </div>
 
         <div className="packages-grid">
@@ -210,6 +229,7 @@ const PricingPackages = () => {
             <PackageCard 
               key={pkg.title} 
               pkg={pkg}
+              fonts={fonts} // Passing fonts down
               isPlaying={playingVideo === pkg.title}
               togglePlay={() => togglePlay(pkg.title)}
               pauseAllVideos={pauseAllVideos}

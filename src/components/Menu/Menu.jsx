@@ -15,6 +15,13 @@ const Menu = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Best for Navigation/UI
+    body: { fontFamily: "'Inter', sans-serif" },
+  };
+
   // Handle window resize
   useEffect(() => {
     const handleResize = () => {
@@ -57,7 +64,7 @@ const Menu = () => {
     <div className="menu-container">
       <div className="menu-bar">
         <div className="menu-bar-container">
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Left Side */}
           {windowWidth > 1000 ? (
             <div className="desktop-nav">
               {menuLinks.slice(0, 2).map((link, index) => (
@@ -65,6 +72,7 @@ const Menu = () => {
                   <Link
                     to={link.path}
                     className={location.pathname === link.path ? "active" : ""}
+                    style={fonts.mono} // Applied Mono font
                   >
                     {link.label}
                   </Link>
@@ -76,11 +84,11 @@ const Menu = () => {
           {/* Logo - Always centered */}
           <div className="menu-logo">
             <Link to="/" onClick={handleLinkClick}>
-             <img src="/work/logo.png" className="logo"/>
+             <img src="/work/logo.png" className="logo" alt="AP Agency Logo"/>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Right Side */}
           {windowWidth > 1000 ? (
             <div className="desktop-nav">
               {menuLinks.slice(2).map((link, index) => (
@@ -88,6 +96,7 @@ const Menu = () => {
                   <Link
                     to={link.path}
                     className={location.pathname === link.path ? "active" : ""}
+                    style={fonts.mono} // Applied Mono font
                   >
                     {link.label}
                   </Link>
@@ -112,7 +121,7 @@ const Menu = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {windowWidth <= 1000 && (
         <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
           <div className="mobile-menu-content">
@@ -122,6 +131,7 @@ const Menu = () => {
                   to={link.path}
                   onClick={handleLinkClick}
                   className={location.pathname === link.path ? "active" : ""}
+                  style={fonts.mono} // Applied Mono font for mobile links too
                 >
                   {link.label}
                 </Link>

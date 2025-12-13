@@ -1,12 +1,18 @@
 import React from "react";
 import "./Footer.css";
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Importing icons
 import { FaPhone, FaEnvelope, FaInstagram, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
-  
+
+  // --- Font Configuration ---
+  const fonts = {
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Big Headers
+    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Nav / Contact / Technical
+    body: { fontFamily: "'Inter', sans-serif" }, // Descriptions
+  };
   
   // Function to scroll to top and handle navigation
   const handleNavClick = () => {
@@ -17,28 +23,26 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-row">
         <div className="footer-contact">
-          <h3  style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}
->
+          {/* Kanit for the Call to Action Header */}
+          <h3 style={{ ...fonts.display, color: "#ebbd7d" }}>
             Let's Collaborate <br />
-            <a style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
- href="mailto:info@apagency.ca" className="highlight-email">
+            <a 
+              href="mailto:info@apagency.ca" 
+              className="highlight-email"
+              style={fonts.display} 
+            >
               info@apagency.ca
             </a>
           </h3>
           
-          <p className="secondary"  style={{
-    
-    color: "white",
-  }}>
+          {/* Inter for the paragraph text */}
+          <p className="secondary" style={{ ...fonts.body, color: "white" }}>
             From 12–16s short‑form ads to full creative direction — we partner
             with brands and agencies to make scroll‑stopping work. Reach out
             anytime.
           </p>
 
-          <div className="contact-info">
+          <div className="contact-info" style={fonts.mono}>
             <a 
               href="tel:6474240504" 
               className="contact-item"
@@ -80,23 +84,21 @@ const Footer = () => {
             </a>
           </div>
 
-          <Link to="/contact" className="bt" onClick={handleNavClick}>
+          <Link to="/contact" className="bt" onClick={handleNavClick} style={fonts.mono}>
             Get in Touch
           </Link>
         </div>
 
-        <div className="footer-nav" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
->
+        {/* IBM Plex Mono for Navigation Links (Directory Style) */}
+        <div className="footer-nav" style={fonts.mono}>
           <Link 
             to="/" 
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Go to home page"
-            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
-
           >
             <span>Home</span>
-            <span>&#8594;</span>
+            <span>→</span>
           </Link>
 
           <Link 
@@ -104,11 +106,9 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="View our portfolio"
-            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
-
           >
             <span>Portfolio</span>
-            <span>&#8594;</span>
+            <span>→</span>
           </Link>
 
           <Link 
@@ -116,11 +116,9 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Learn about us"
-            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
-
           >
             <span>About</span>
-            <span>&#8594;</span>
+            <span>→</span>
           </Link>
 
           <Link 
@@ -128,11 +126,9 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Contact us"
-            style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
-
           >
             <span>Contact</span>
-            <span>&#8594;</span>
+            <span>→</span>
           </Link>
 
           <Link 
@@ -140,31 +136,23 @@ const Footer = () => {
             className="footer-nav-item" 
             onClick={handleNavClick}
             aria-label="Frequently asked questions"
-          style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
-
           >
             <span>FAQ</span>
-            <span>&#8594;</span>
+            <span>→</span>
           </Link>
         </div>
       </div>
-      <div className="footer-row" style={{ fontFamily: 'Druk Wide Cy Web Bold Regular' }}
->
+
+      <div className="footer-row">
         <div className="footer-header">
-          <h1  style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}
->AP</h1>
-          <h1 style={{
-    fontFamily: "Druk Wide Cy Web Bold Regular",
-    color: "#ebbd7d",
-  }}
->Agency</h1>
+          {/* Kanit Bold for the Massive Agency Title */}
+          <h1 style={{ ...fonts.display, color: "#ebbd7d" }}>AP</h1>
+          <h1 style={{ ...fonts.display, color: "#ebbd7d" }}>Agency</h1>
         </div>
 
         <div className="footer-copyright-line">
-          <p className="primary sm">&copy; AP Agency 2025</p>
+          {/* IBM Plex Mono for Copyright */}
+          <p className="primary sm" style={fonts.mono}>© AP Agency 2025</p>
         </div>
       </div>
     </div>
