@@ -11,31 +11,18 @@ const ContactForm = () => {
     body: { fontFamily: "'Inter', sans-serif" }, // Plain text
   };
 
-  // Method 1: Direct Calendly integration (most reliable)
-  const openCalendly = () => {
-    window.open('https://calendly.com/apdigitalagency/30min', '_blank', 'width=800,height=600');
-  };
-
-  // Method 2: Using Calendly's direct popup method
-  const openCalendlyPopup = () => {
-    const calendlyPopup = window.open(
-      'https://calendly.com/apdigitalagency/30min', 
-      'calendly', 
-      'width=800,height=600,scrollbars=yes,resizable=yes'
-    );
-    
-    if (calendlyPopup) {
-      calendlyPopup.focus();
-    } else {
-      window.open('https://calendly.com/demo/30min', '_blank');
-    }
+  /**
+   * Opens Calendly in a new tab.
+   * Using '_blank' ensures it behaves like a standard hyperlink with target="_blank".
+   */
+  const openCalendlyInNewTab = () => {
+    window.open('https://calendly.com/apdigitalagency/30min', '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div className="contact-form" ref={containerRef} style={fonts.body}>
       <div className="contact-form-row">
         <div className="contact-form-row-copy-item">
-          {/* Kanit for the Big Headline */}
           <p className="primary lg" style={fonts.display}>
             Let's Craft Ads That Convert
           </p>
@@ -45,11 +32,9 @@ const ContactForm = () => {
       <div className="contact-form-row calendly-section-row">
         <div className="contact-form-col">
           <div className="contact-form-header">
-            {/* Kanit for the Section Title */}
             <h3 className="consultation-heading" style={{ ...fonts.display, color: "#ebbd7d" }}>
               Book a Video Shoot Consultation
             </h3>
-            {/* Inter for Body Text */}
             <p style={fonts.body}>
               Ready to create scroll-stopping content that hooks fast and drives results? 
               Schedule a free consultation to discuss your project and how we can help 
@@ -61,7 +46,6 @@ const ContactForm = () => {
         <div className="contact-form-col">
           <div className="calendly-section">
             <div className="consultation-features">
-              {/* Inter for the List Items */}
               <div className="feature-bullet" style={fonts.body}>
                 <span className="bullet-icon">•</span>
                 <span>30-minute free consultation</span>
@@ -81,16 +65,15 @@ const ContactForm = () => {
             </div>
             
             <div className="calendly-button-container">
-              {/* IBM Plex Mono for the CTA Button */}
+              {/* Button opens link in a new tab */}
               <button 
                 className="bt calendly-button"
-                onClick={openCalendlyPopup}
+                onClick={openCalendlyInNewTab}
                 style={fonts.mono}
               >
                 Schedule Free Consultation
               </button>
               
-              {/* IBM Plex Mono for the backup link */}
               <div className="calendly-direct-link" style={fonts.mono}>
                 <p>Or book directly: 
                   <a 
@@ -99,7 +82,7 @@ const ContactForm = () => {
                     rel="noopener noreferrer"
                     className="direct-link"
                   >
-                   https://calendly.com/apdigitalagency/30min
+                    https://calendly.com/apdigitalagency/30min
                   </a>
                 </p>
               </div>
@@ -108,7 +91,7 @@ const ContactForm = () => {
         </div>
       </div>
       
-      {/* IBM Plex Mono for the Footer Strip (Technical Specs look) */}
+      {/* Footer Strip */}
       <div className="contact-features" style={{ ...fonts.mono, color: "#ebbd7d" }}>
         <div className="feature-item">
           <p className="primary sm">Available for Brands & Agencies</p>
