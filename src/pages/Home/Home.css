@@ -1,48 +1,12 @@
-/* Home.css */
+/* --- GLOBAL RESET --- */
 html, body {
-  overflow-x:hidden;
-  width: 100%;
+  overflow-x: hidden;
+  width: 100vw;
+  background-color: #0a0a0a;
+  
 }
 
-/* Video Overlay */
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 1;
-}
-
-.demo {
-  background-color: black;
-}
-
-/* Hero Title Wrapper */
-.hero-title-wrapper {
-  position: relative;
-  display: inline-block;
-  text-align: center;
-}
-
-.hero-sub {
-  position: absolute;
-  left: 100%;
-  bottom: 0;
-  white-space: nowrap;
-  margin-left: 0.5em;
-  font-weight: normal;
-  font-size: 1.4em;
-  transform: translateY(15%);
-}
-
-.hero-sub span {
-  font-size: 1.6em;
-  font-weight: 600;
-}
-
-/* Hero Section */
+/* --- HERO SECTION (Preserved your original layouts) --- */
 .hero {
   position: relative;
   width: 100vw;
@@ -68,6 +32,16 @@ html, body {
   object-fit: cover;
 }
 
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -77,301 +51,281 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2em;
+  gap: 0.6em;
   margin-top: 80px;
 }
 
+.hero-title-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+
 .hero-content h1 {
-  font-size: 5vw;
+  font-size: 6vw;
   font-weight: 700;
-  line-height: 5.4vw;
-  color: var(--bg);
-  margin-bottom: 1rem;
-  font-family: "Druk Wide Cy Web Bold Regular";
+  line-height: 6.4vw;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
   display: inline-block;
 }
 
-.hero-text {
+.hero-sub {
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 1.4em;
+  margin-top: 0.2em;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-sub span {
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.hero-text-lines {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
-  margin-top: 1em;
+  gap: 0.2em;
+  margin-top: 0.5em;
+}
+
+.same-size {
+  font-size: 3vw !important;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
 }
 
 .hero-line {
-  font-family: "Inter", sans-serif;
-  font-size: 2vw;
-  font-weight: 600;
-  color: var(--bg);
+  color: #ffffff;
 }
 
 .hero-highlight {
-  font-family: "Inter", sans-serif;
-  font-size: 3vw;
-  font-weight: 600;
-  color: #FFD700;
+  color: #ebbd7d;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.cta-button {
+.performance-text {
+  margin-top: 0.8em !important;
+  font-size: 2.2vw !important;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* --- BUTTONS (Your original style + Bottom-to-Top Animation) --- */
+.hero-buttons {
+  display: flex;
+  gap: 1.5em;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.8em;
+}
+
+.big-button {
   display: inline-block;
-  padding: 1.2em 2.8em;
-  background: white;
+  padding: 1em 2em;
+  background-color: #BA955D;
   color: black;
-  border-radius: 0;
-  text-decoration: none;
-  font-family: "Inter Mono", monospace;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  border: 2px solid #BA955D;
+  font-size: 1.2rem;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-top: 1em;
-  transition: all 0.3s ease;
-  border: 1px solid black;
+  text-decoration: none;
   cursor: pointer;
+  min-width: 200px;
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cta-button:hover {
-  background: black;
-  color: white;
+.big-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #ffffff;
+  z-index: -1;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.see-all {
-  margin-top: 4em;
+.big-button:hover {
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+.big-button:hover::before {
+  height: 100%;
 }
 
 /* -------------------------------------------------------- */
-/* --- RESULTS SECTION (STRICTLY CENTERED) --- */
+/* --- RESULTS SECTION (Cinematic Background & Space Fix) --- */
 /* -------------------------------------------------------- */
+
+.dark-parallax {
+  background-color: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh; /* Reduced to tighten layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  z-index: 1;
+  /* Premium Dark Grid */
+  background-image: 
+    linear-gradient(rgba(186, 149, 93, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 149, 93, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.parallax-background::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.15;
+  pointer-events: none;
+}
 
 .results-section {
   width: 100%;
-  padding: 8em 2em; 
-  display: flex;
-  flex-direction: column; /* Ensures vertical stacking */
-  justify-content: center;
-  align-items: center; /* Horizontally centers content */
-  background-color: #050505;
-  position: relative;
-  overflow: hidden;
-  text-align: center; /* Backup centering */
-}
-
-.impact-container {
-  max-width: 1600px; 
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* CENTERS CHILDREN */
-  justify-content: center;
-  gap: 3em; 
+  padding: 4em 2em;
+  z-index: 2;
   text-align: center;
 }
 
-/* --- THE HEADLINES --- */
-
 .impact-title {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center align title parts */
-  justify-content: center;
-  line-height: 0.9; 
-  margin-bottom: 2em; 
-}
-
-.impact-title {
-  font-family: "Druk Wide Cy Web Bold Regular";
-  font-size: clamp(1rem, 1.5vw, 1.5rem); 
-  color: #ffffff;
-  letter-spacing: 0.3em; 
+  font-size: clamp(1.7rem, 2vw, 2.8rem);
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  text-align: center;
+  color: #ffffff !important;
+  margin-bottom: 1em;
 }
 
 .outline-text {
   display: block;
-  font-family: "Druk Wide Cy Web Bold Regular";
-  font-size: clamp(3rem, 8vw, 8rem); 
+  font-size: clamp(2.5rem, 9vw, 9rem);
   color: transparent;
-  -webkit-text-stroke: 1px #ebbd7d; 
-  opacity: 1;
+  -webkit-text-stroke: 4px #BA955D;
   text-transform: uppercase;
-  margin-top: 0.2em; 
-  text-align: center;
-  width: 100%;
+  margin-top: 0.2em;
+  line-height: 1.1;
 }
 
-/* --- THE PARAGRAPH SECTION --- */
-
-.impact-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* FORCES CENTER ALIGNMENT */
-  justify-content: center;
-  width: 100%;
-  max-width: 100%; 
-  text-align: center;
-}
-
-.vertical-line {
-  display: none; 
-}
-
-/* 1. "We engineer..." */
 .main-statement {
-  font-family: "Inter", sans-serif; 
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem); 
-  color: #cccccc;
-  line-height: 1.6;
-  font-weight: 500;
-  width: 100%;
-  max-width: 1400px; 
-  text-align: center; /* Ensures text is centered */
-  margin: 0 auto; /* Centers the block itself */
+  font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+  line-height: 1.4;
+  color: #ffffff !important;
 }
 
-/* 2. "STOP SCROLLING" - Own Line, Gold Box */
 .gold-highlight {
-  display: block; 
-  width: fit-content; 
-  
-  /* STRICT CENTERING MAGIC */
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  
-  background-color: #ebbd7d; 
-  color: #000000; 
-  
-  font-family: "Druk Wide Cy Web Bold Regular";
-  font-size: 1.2em; 
-  padding: 0.2em 0.5em; 
-  
-  transform: skew(-10deg); 
-  text-transform: uppercase;
-  text-align: center;
+  display: inline-block;
+  background-color: #BA955D;
+  color: #000000;
+  padding: 0.1em 0.5em;
+  margin: 10px 10px;
+  transform: skew(-10deg);
 }
 
-/* 3. "// NO FLUFF" - HUGE & GOLD */
 .sub-statement {
-  display: block; /* Ensures it takes width to center */
-  width: 100%;
-  text-align: center; /* Centers the text inside */
-  
-  font-family: "Druk Wide Cy Web Bold Regular"; 
-  font-size: clamp(2rem, 5vw, 5rem); 
-  color: #ebbd7d; 
-  margin-top: 1.5em; 
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  margin-top: 1em;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  line-height: 1;
+  color: #ebbd7d !important;
 }
 
 /* -------------------------------------------------------- */
-/* --- END RESULTS SECTION --- */
+/* --- CHOOSE YOUR PACKAGE (Gorgeous Background) --- */
 /* -------------------------------------------------------- */
 
-/* Reviews Section */
-.reviews-section {
-  padding: 4em 0;
-  background: var(--bg);
-}
-
-.reviews-section .review-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.butt {
-  display: inline-block;
-  padding: 1em 2em;
-  background-color: #ebbd7d;
-  color: black;
-  border: 1px solid black;
-  font-family: "Arial", sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.butt:hover {
-  background-color: black;
-  color: white;
-}
-
-/* Work Showcase Section */
-.sticky-work-header {
+.dark-section {
+  background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%) !important;
   position: relative;
+}
+
+/* Glowing Aura effect in the background */
+.home-work::before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: 50%;
   width: 100%;
-  padding: 1.7em;
+  height: 500px;
+  background: radial-gradient(circle, rgba(186, 149, 93, 0.08) 0%, transparent 70%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.golden-text {
+  color: #BA955D !important;
+}
+
+.white-text {
+  color: #ffffff !important;
+  padding: 15px;
+}
+
+.sticky-work-header {
+  padding: 4em 2em;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  overflow: hidden;
-  margin-top: 4em; 
-  background-color: #222222;
+  min-height: 20vh;
 }
 
 .sticky-work-header h1 {
-  opacity: 0.525;
-  line-height: 1;
-  font-size: 7vw;
+  font-size: clamp(2rem, 6vw, 5rem);
   letter-spacing: 0.1em;
-  font-family: "Inter", sans-serif;
-  z-index: 2;
-  color: #ebbd7d;
 }
 
 .home-work {
   width: 100%;
-  padding: 4em 2em;
+  padding: 5em 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #222222;
-  z-index: 10;
   position: relative;
 }
 
 .home-work-list {
   width: 70%;
   max-width: 1200px;
-  margin: 0 auto 4em;
+  margin-bottom: 4em;
   display: flex;
   flex-direction: column;
-  gap: 6em;
-}
-
-.home-work-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 1.5em;
-}
-
-.home-work-item h3 {
-  font-family: "Inter", sans-serif;
-}
-
-.home-work-item h4 {
-  font-family: "Inter", sans-serif;
+  gap: 5em;
+  z-index: 2;
 }
 
 .work-item-video {
   width: 100%;
   height: 500px;
   overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(186, 149, 93, 0.2);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
 }
 
 .work-item-video video {
@@ -380,211 +334,84 @@ html, body {
   object-fit: cover;
 }
 
-/* Responsive Styles */
+/* --- REVIEWS & OTHER --- */
+.reviews-section {
+  padding: 4em 0;
+}
+
+/* -------------------------------------------------------- */
+/* --- MOBILE FIXES (Killing the Blank Space) --- */
+/* -------------------------------------------------------- */
+
 @media (max-width: 1000px) {
-  .hero,
-  .results-section,
+  .hero-content h1 { font-size: 9vw; }
+  .same-size { font-size: 4vw !important; }
+}
+
+@media (max-width: 768px) {
+  /* Result Section Tighten */
+  .dark-parallax {
+    min-height: auto;
+    padding: 70px 25px;
+  }
+
+  .results-section {
+    padding: 10;
+  }
+
+  .outline-text {
+    font-size: clamp(2rem, 7vw, 4rem) !important;
+    -webkit-text-stroke: 1.5px #BA955D;
+  }
+
+  .main-statement {
+    font-size: 1.2rem !important;
+    margin-top: 15px;
+  }
+
+  .sub-statement {
+    font-size: 2rem !important;
+    margin-top: 1rem;
+  }
+
+  /* Sticky Header Tighten */
   .sticky-work-header {
-    padding: 1em;
+    height: auto !important;
+    min-height: auto;
+    padding: 3rem 1em;
   }
 
   .hero-content {
     margin-top: 50px;
   }
 
-  .hero-content h1 {
-    font-size: 8vw;
-    line-height: 7vw;
-  }
-
-  .hero-line {
-    font-size: 3.5vw;
-  }
-
-  .hero-highlight {
-    font-size: 3.5vw;
-  }
-
-  .home-work {
-    padding: 4em 1.5em;
-  }
-
-  .home-work-list {
-    width: 100%;
-    gap: 4em;
-  }
-
-  .work-item-video {
-    height: 350px;
-  }
-  
-  .hero-sub {
-    font-size: 1.2em;
-    transform: translateY(10%);
-  }
-  
-  .hero-sub span {
-    font-size: 1.4em;
-  }
-}
-
-/* MOBILE FIXES */
-@media (max-width: 768px) {
-  .results-section {
-    padding: 6em 1.5em;
-  }
-
-  .impact-title {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-  }
-  
-  .outline-text {
-    font-size: 3rem; 
-    -webkit-text-stroke: 1px #ebbd7d;
-  }
-
-  .main-statement {
-    font-size: 1.2rem;
-    line-height: 1.5;
-  }
-  
-  .gold-highlight {
-    font-size: 1em;
-    margin: 10px auto; /* Ensures centering on mobile too */
-  }
-  
-  .sub-statement {
-    font-size: 2rem;
-    line-height: 1.1;
-  }
-
-  .sticky-work-header {
-    height: auto !important;
-    min-height: auto;
-    margin-top: 0;
-    padding: 4rem 1em 1.5em 1em; 
-    position: relative;
-    transform: none !important;
-    font-size: 0.1em;
-  }
-  
-  .hero {
-    height: auto;
-    min-height: 100vh;
-    padding: 1em;
-  }
-
-  .hero-content {
-    padding: 1em;
-    margin-top: 70px;
-    gap: 1em;
-  }
-  
-  .hero-content h1 {
-    font-size: 8vw;
-    line-height: 1.2;
-    margin-top: 30px;
-  }
-
-  .hero-line {
-    font-size: 4vw;
-  }
-
-  .hero-highlight {
-    font-size: 3vw;
-    line-height: 1.2;
-  }
-
-  .reviews-section {
-    padding: 2em 0;
-  }
-  
-  .cta-button {
-    padding: 1em 2em;
-    font-size: 0.9rem;
-  }
-
   .work-item-video {
     height: 300px;
   }
-  
-  .home-work {
-    padding-top: 2em;
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .sticky-work-header h1 {
-    letter-spacing: 0.05em;
-    opacity: 0.8;
-    font-size: 2rem;
-  }
-  
-  .hero-sub {
-    position: static;
-    display: block;
-    margin-top: -0.5em;
-    transform: none;
-    text-align: center;
-    white-space: normal;
-    margin-left: 0;
-  }
-  
-  .hero-title-wrapper {
-    display: block;
+
+  .big-button {
+    width: 100%;
+    min-width: 250px;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-content {
-    margin-top: 40px;
-  }
+  .hero-content h1 { font-size: 14vw; line-height: 1.1; }
+  .same-size { font-size: 6vw !important; }
   
-  .hero-content h1 {
-    font-size: 12vw;
-    line-height: 1.2;
+  .dark-parallax {
+    padding: 50px 10px;
   }
 
-  .hero-line {
-    font-size: 5.5vw;
-  }
-
-  .hero-highlight {
-    font-size: 4.5vw;
-    line-height: 1.3;
-  }
-
-  .reviews-section {
-    padding: 1.5em 0;
-  }
-
-  .work-item-video {
-    height: 250px;
-  }
-  
-  .sticky-work-header {
-    padding: 3rem 1em 1em 1em; 
-  }
-  
-  .sticky-work-header h1 {
-    font-size: 1.3rem; 
-    line-height: 1.4;
-  }
-  
-  .home-work-list {
-    gap: 3em;
-    margin-bottom: 2em;
-  }
-  
-  .see-all {
-    margin-top: 2em;
-  }
-  
-  .hero-sub {
-    font-size: 1em;
-    margin-top: -0.4em;
-  }
-  
-  .hero-sub span {
-    font-size: 1.2em;
+  .gold-highlight {
+    margin: 5px 0;
+    display: block;
+    width: fit-content;
+    margin: 10px auto;
   }
 }

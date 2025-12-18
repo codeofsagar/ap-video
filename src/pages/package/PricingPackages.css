@@ -295,21 +295,28 @@
 
 /* CTA BUTTON (Desktop) */
 .ctabutt {
-  padding: 1.2rem 2.5rem;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1.2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
+  display: inline-block;
+  padding: 1em 2em; /* Bigger padding */
+  background-color: #ebbd7d;
   color: black;
-  background: white;
-  margin-top: 0.8rem;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  border: 2px solid #ebbd7d;
+  font-size: 1.2rem; /* Bigger font */
+  font-weight: 700;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: transform 0.2s;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 180px; /* Wider */
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+.ctabutt:hover{
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  transform: translateY(-5px); /* More lift on hover */
+  box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
 }
 
 /* ============ RESPONSIVE FIXES ============ */

@@ -1,197 +1,297 @@
-.footer {
-  width: 100vw;
-  height: 100%;
-  min-height: 100svh;
-  padding: 6em 2em 2em 2em;
+:root {
+  --gold: #B9935B;
+  --black: #050505;
+  --white: #FFFBF6;
+}
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* CORE FIX: Prevent horizontal scroll at the root 
+   Added box-sizing to ensure padding doesn't push width 
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700;900&family=IBM+Plex+Mono&family=Inter:wght@400;500;600;700&display=swap');
+
+.next-footer {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  width: 100%; /* Changed from 100vw to 100% to fix scroll */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-  background-color: var(--bg, black);
-  color: var(--fg, white);
+  overflow: hidden; /* Clips any stray pixels from big text */
+  position: relative;
 }
 
-.footer-row:nth-child(1) {
+/* 1. Main Call to Action Area */
+.cta-section {
+  padding: 4rem 1rem;
+  width: 100%;
+}
+
+.cta-container {
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  gap: 4em;
+  align-items: flex-end;
+  gap: 2rem;
 }
 
-.footer-contact,
-.footer-nav {
+.cta-left {
   flex: 1;
 }
 
-.footer-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.next-steps {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 1rem;
 }
 
-.footer-nav-item {
-  width: 50%;
-  padding: 1em 0;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px dashed white;
-  transition: transform 0.3s ease;
-  color: white;
+.cta-heading {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap; /* Prevents "Have an Idea?" from breaking awkwardly */
 }
 
-.footer-nav-item:hover {
-  transform: translateX(-5px);
-  color: #ebbd7d; /* UPDATED */
+.cta-right {
+  flex-shrink: 0;
 }
 
-.footer-nav-item span {
-  color: inherit;
-}
-
-.footer-nav-item:last-child {
-  border-bottom: 1px dashed var(--fg);
-}
-
-.footer-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-.footer-contact p {
-  margin-bottom: 0.5em;
-}
-
-.highlight-email {
-  color: #ebbd7d !important; /* UPDATED */
-  font-weight: 600;
-}
-
-.contact-info {
-  margin: 1.5em 0 1.5em;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-
-.contact-item {
+.project-link {
   display: flex;
   align-items: center;
-  gap: 0.8em;
-  font-size: 1.1em;
-}
-
-.contact-icon {
-  font-size: 1.2em;
-  min-width: 1.5em;
-  color: #ebbd7d; /* UPDATED */
-}
-
-.contact-info a {
+  gap: 1rem;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.2rem, 3vw, 3rem);
+  text-transform: uppercase;
+  color: var(--white);
   text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  gap: 0.8em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(185, 147, 91, 0.5);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.project-link:hover {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.arrow {
+  color: var(--gold);
+  font-size: 1.5rem;
   transition: transform 0.3s ease;
 }
 
-.contact-info a:hover {
-  transform: translateX(5px);
+.project-link:hover .arrow {
+  transform: translate(4px, -4px);
 }
 
-.footer-header {
+/* 2. Architectural Grid Info */
+.grid-section {
+  border-top: 1px solid rgba(185, 147, 91, 0.5);
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(10px);
   width: 100%;
-  padding: 4em 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 }
 
-.footer-header h1 {
-  position: relative;
-  left: -0.5vw;
-  font-size: 10vw;
+.grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.grid-col {
+  padding: 2.5rem 1.5rem;
+  border-bottom: 1px solid rgba(185, 147, 91, 0.2); /* Mobile separation */
+}
+
+.footer-logo-img {
+  width: 70px; /* Adjusted mobile size */
+  height: auto;
+  margin-bottom: 1.5rem;
   
-  color: #ebbd7d; /* UPDATED */
 }
 
-/* FIX AP AGENCY OVERFLOW */
-html, body {
-  overflow-x: hidden !important;
+.footer-description {
+  color: #999;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 400px;
 }
 
-.footer-header h1 {
-  left: 0 !important;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  color :white;
+.grid-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
 }
 
-/* COPYRIGHT */
-.footer-copyright-line {
-  width: 100%;
-  padding: 0.5em 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-top: 1px dashed white;
-  color: #ebbd7d; /* UPDATED */
+.sitemap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.footer-copyright-line p:nth-child(2) {
-  text-align: right;
+.sitemap-list li {
+  margin-bottom: 1rem;
 }
 
-/* BUTTON */
-.bt {
-  color: black;
-  background-color: #ebbd7d;
-  border: 2px solid black;
-  padding: 14px 10px;
-  text-align: center;
-  font-weight: 600;
+.sitemap-link {
+  color: var(--white);
+  text-decoration: none;
   font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.bt:hover {
-  background-color: black;
-  color: white;
+.sitemap-link:hover {
+  color: var(--gold);
 }
 
-@media (max-width: 1000px) {
-  .footer-row:nth-child(1) {
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  margin-bottom: 1.5rem;
+}
+
+.contact-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.contact-link {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  word-break: break-all;
+}
+
+.contact-link:hover {
+  color: var(--gold);
+}
+
+.contact-text {
+  color: #ccc;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* 3. Massive Brand Watermark - THE FIX IS HERE */
+.brand-section {
+  border-top: 1px solid rgba(185, 147, 91, 0.5);
+  background-color: var(--gold);
+  overflo-x: hidden; /* Clips the text so it can't cause scroll */
+  width: 100vw;
+}
+
+.brand-container {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-text {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 900;
+  font-size: 18vw; /* Scales with screen width */
+  text-transform: uppercase;
+  color: var(--black);
+  mix-blend-mode: multiply;
+  line-height: 0.8;
+  text-align: center;
+  margin: 0;
+  white-space: nowrap; /* FORCES SINGLE LINE */
+  pointer-events: none;
+   /* Prevents selection issues with huge text */
+   width:100%;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .cta-section {
+    padding: 6rem 2rem 4rem;
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-col {
+    padding: 3rem;
+    border-bottom: none;
+  }
+  
+  .footer-logo-img {
+    width: 120px;
+  }
+  
+  .grid-col:nth-child(odd) {
+    border-right: 1px solid rgba(185, 147, 91, 0.5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .grid-col {
+    border-right: 1px solid rgba(185, 147, 91, 0.5);
+  }
+  
+  .grid-col:last-child {
+    border-right: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .cta-container {
     flex-direction: column;
-  }
-
-  .footer-nav {
     align-items: flex-start;
-    width: 100%;
-    margin-top: 2em;
+    gap: 1.5rem;
+  }
+  
+  .cta-heading {
+    font-size: 4rem; /* Specific size for mobile to ensure fit */
   }
 
-  .footer-nav-item {
-    width: 100%;
-  }
-
-  .footer-header {
-    padding: 1em 0;
-  }
-
-  .footer {
-    padding: 4em 1.25em 1.25em 1.25em;
-    gap: 2em;
-  }
-
-  .btn {
-    padding: 0.7em 1.5em;
-  }
-
-  .contact-item {
-    font-size: 1em;
+  /* Specifically ensuring the bottom watermark is one line and fits */
+  .brand-text {
+    font-size: 15vw; 
+    padding: 0.5rem 0;
   }
 }

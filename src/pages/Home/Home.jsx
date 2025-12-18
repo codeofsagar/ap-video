@@ -19,12 +19,13 @@ const Home = () => {
   const stickyWorkHeaderRef = useRef(null);
   const homeWorkRef = useRef(null);
   const resultsSectionRef = useRef(null);
+  const parallaxBgRef = useRef(null);
 
   // --- Font Configuration ---
   const fonts = {
-    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Header/Display
-    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Branded/Console
-    body: { fontFamily: "'Inter', sans-serif" }, // Plain text
+    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
+    mono: { fontFamily: "'IBM Plex Mono', monospace" },
+    body: { fontFamily: "'Inter', sans-serif" },
   };
 
   // --- 1. Sticky Header Animation Logic ---
@@ -32,7 +33,6 @@ const Home = () => {
     const workHeaderSection = stickyWorkHeaderRef.current;
     const homeWorkSection = homeWorkRef.current;
     
-    // Mobile-specific fix: Only enable pinning on desktop
     if (window.innerWidth >= 768) {
       let workHeaderPinTrigger;
       if (workHeaderSection && homeWorkSection) {
@@ -52,18 +52,33 @@ const Home = () => {
     }
   }, []);
 
-  // --- 2. New Stylish Text Animation Logic ---
+  // --- 2. Parallax background animation for Results section ---
   useEffect(() => {
     const section = resultsSectionRef.current;
-    const title = section.querySelectorAll(".impact-title");
-    const lines = section.querySelectorAll(".impact-line");
-    const verticalLine = section.querySelectorAll(".vertical-line");
+    const bg = parallaxBgRef.current;
     
     const ctx = gsap.context(() => {
+      // Parallax background effect
+      gsap.to(bg, {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+
+      // Text animation
+      const title = section.querySelectorAll(".impact-title");
+      const lines = section.querySelectorAll(".impact-line");
+      const verticalLine = section.querySelectorAll(".vertical-line");
+      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 70%", // Starts when top of section hits 70% of viewport
+          start: "top 70%",
           toggleActions: "play none none reverse",
         }
       });
@@ -87,7 +102,6 @@ const Home = () => {
     return () => ctx.revert();
   }, []);
 
-  // Sample work items with videos
   const workItems = [
     {
       id: 1,
@@ -127,56 +141,77 @@ const Home = () => {
               <h1 style={fonts.display}>AdCraft</h1>
               
               {/* IBM Plex Mono for Agency Branding */}
-              <h3 className="hero-sub" style={fonts.mono}>
+              <h3 className="hero-sub" style={{...fonts.mono, textAlign: 'center'}}>
                 BY <span style={{ color: "#ebbd7d" }}>AP AGENCY</span>
               </h3>
             </div>
             
-            {/* Inter for descriptive text */}
-            <p className="hero-line" style={{ ...fonts.body, color: "#ebbd7d" }}>
+            {/* Text lines with larger font size */}
+            <div className="hero-text-lines">
+              <p className="hero-line same-size" style={fonts.body}>
+                You've Got 1 Second to Hook.
+              </p>
+              <p className="hero-highlight same-size" style={{ ...fonts.mono, color: "#ebbd7d" }}>
+                We Give You 3 Ads <br/> That Hit Like Brass Knuckles.
+              </p>
+            </div>
+            
+            {/* High performance text in white */}
+            <p className="hero-line performance-text white-text" style={{ ...fonts.body }}>
               High-performance video ads for brands and creators.
             </p>
             
-            <Link to="/contact" className="butt" style={fonts.mono}>
-              Get Started
-            </Link>
-            
-            <div className="hero-text">
-              <p className="hero-line" style={fonts.body}>You've Got 1 Second to Hook.</p>
-              
-              {/* IBM Plex Mono for the "Punchline" console style */}
-              <p className="hero-highlight" style={{ ...fonts.mono, color: "#ebbd7d" }}>
-                We Give You 3 Ads That Hit Like Brass Knuckles.
-              </p>
+            {/* Bigger buttons with new hover animation */}
+            <div className="hero-buttons">
+              <Link to="/contact" className="big-button" style={fonts.mono}>
+                Get Started
+              </Link>
+              <Link to="/portfolio" className="big-button" style={fonts.mono}>
+                See All Work
+              </Link>
             </div>
           </div>
         </section>
 
+        {/* --- STYLISH RESULTS SECTION (65vh height) --- */}
         {/* --- STYLISH RESULTS SECTION --- */}
-        <section ref={resultsSectionRef} className="results-section demo">
-          <div className="impact-container">
-            {/* Kanit Bold for Section Title */}
-            <h2 className="impact-title" style={fonts.display}>
-              NOBODY WATCHES <br />
-              <span className="outline-text" style={fonts.display}>60-SECOND ADS</span>
-            </h2>
-            
-            <div className="impact-content">
-              <div className="vertical-line"></div>
-              <div className="text-stack">
-                {/* Inter for body copy */}
-                <p className="impact-line main-statement" style={fonts.body}>
-                  We engineer short, creative chaos that forces the world to
-                  <span className="gold-highlight" style={fonts.display}> STOP SCROLLING </span> 
-                  and start clicking.
-                </p>
-                <p className="impact-line sub-statement" style={fonts.mono}>
-                   No Fluff. Just Results.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+<section ref={resultsSectionRef} className="results-section dark-parallax">
+  {/* Modernized Background: Noise + Animated Grid */}
+  <div ref={parallaxBgRef} className="parallax-background">
+    <div className="noise-overlay"></div>
+    <div className="grid-pattern"></div>
+  </div>
+  
+  <div className="impact-container">
+    <div className="label-wrapper">
+      
+    </div>
+
+    <h2 className="impact-title" style={fonts.display}>
+      <span className="title-row">NOBODY WATCHES</span>
+      <span className="outline-text" style={fonts.display}>
+        60-SECOND ADS
+      </span>
+    </h2>
+    
+    <div className="impact-content">
+      <div className="text-stack">
+        <p className="impact-line main-statement" style={fonts.body}>
+          We engineer short, creative chaos that forces the world to
+          <span className="gold-highlight" style={fonts.display}> 
+            STOP SCROLLING 
+          </span> 
+          and start clicking.
+        </p>
+        <div className="sub-statement-wrapper">
+           <p className="impact-line sub-statement" style={{...fonts.mono}}>
+            NO FLUFF. JUST RESULTS.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         <section>
           <VideoCarousel/>
@@ -190,29 +225,26 @@ const Home = () => {
           <Reviews />
         </section>
         
-        {/* Work Showcase Section */}
-        <section ref={stickyWorkHeaderRef} className="sticky-work-header">
-           {/* Kanit Bold for Work Header */}
-          <h1 style={fonts.display}>Choose Your Video Package</h1>
+        {/* Work Showcase Section - Darker background, golden title */}
+        <section ref={stickyWorkHeaderRef} className="sticky-work-header dark-section">
+          <h1 className="golden-text" style={fonts.display}>Choose Your Video Package</h1>
         </section>
 
-        <section ref={homeWorkRef} className="home-work">
+        <section ref={homeWorkRef} className="home-work dark-section">
           <div className="home-work-list">
             {workItems.map((work, index) => (
               <div key={work.id} className="home-work-item">
-                {/* Kanit Bold for Project Titles */}
-                <h3 style={fonts.display}>{work.title}</h3>
+                <h3 className="white-text" style={fonts.display}>{work.title}</h3>
                 <div className="work-item-video">
                   <video autoPlay loop muted playsInline>
                     <source src={work.video} type="video/mp4" />
                   </video>
                 </div>
-                {/* IBM Plex Mono for Categories */}
-                <h4 style={{ ...fonts.mono, color: "#ebbd7d" }}>{work.category}</h4>
+                <h4 style={{ ...fonts.mono, color: "#ebbd7d", padding:"10px" }}>{work.category}</h4>
               </div>
             ))}
           </div>
-          <Link to="/portfolio" className="butt see-all" style={fonts.mono}>
+          <Link to="/portfolio" className="big-button see-all" style={fonts.mono}>
             See All Works
           </Link>
         </section>

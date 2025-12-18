@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Menu.css";
 
 const Menu = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const location = useLocation();
+
+  // --- Original Menu Links ---
   const menuLinks = [
     { path: "/", label: "Home" },
     { path: "/portfolio", label: "Portfolio" },
@@ -11,14 +16,10 @@ const Menu = () => {
     { path: "/faq", label: "FAQ" },
   ];
 
-  const location = useLocation();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   // --- Font Configuration ---
   const fonts = {
     display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
-    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Best for Navigation/UI
+    mono: { fontFamily: "'IBM Plex Mono', monospace" },
     body: { fontFamily: "'Inter', sans-serif" },
   };
 
@@ -26,30 +27,18 @@ const Menu = () => {
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      if (window.innerWidth > 1000 && isMenuOpen) {
-        setIsMenuOpen(false);
+      if (window.innerWidth > 1000 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
       }
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [isMenuOpen]);
-
-  // Toggle mobile menu
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Close mobile menu when link is clicked
-  const handleLinkClick = () => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
+  }, [mobileMenuOpen]);
 
   // Toggle body scroll for mobile menu
   useEffect(() => {
-    if (isMenuOpen) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -58,87 +47,145 @@ const Menu = () => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isMenuOpen]);
+  }, [mobileMenuOpen]);
+
+  const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+  const handleLinkClick = () => mobileMenuOpen && setMobileMenuOpen(false);
 
   return (
-    <div className="menu-container">
-      <div className="menu-bar">
-        <div className="menu-bar-container">
-          {/* Desktop Navigation - Left Side */}
-          {windowWidth > 1000 ? (
-            <div className="desktop-nav">
-              {menuLinks.slice(0, 2).map((link, index) => (
-                <div key={index} className="menu-link-item">
-                  <Link
-                    to={link.path}
-                    className={location.pathname === link.path ? "active" : ""}
-                    style={fonts.mono} // Applied Mono font
-                  >
-                    {link.label}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ) : null}
-
-          {/* Logo - Always centered */}
-          <div className="menu-logo">
+    <div className="header-wrapper"> 
+      
+      {/* ======================= 
+          DESKTOP HEADER (like Header.tsx design)
+      ======================== */}
+      {windowWidth > 1000 ? (
+        <header className="desktop-header">
+          {/* Logo Container - Left side */}
+          <div className="logo-left">
             <Link to="/" onClick={handleLinkClick}>
-             <img src="/work/logo.png" className="logo" alt="AP Agency Logo"/>
+              <img 
+                src="/work/logo.png" 
+                alt="AP Agency Logo"
+                className="desktop-logo"
+              />
             </Link>
           </div>
 
-          {/* Desktop Navigation - Right Side */}
-          {windowWidth > 1000 ? (
-            <div className="desktop-nav">
-              {menuLinks.slice(2).map((link, index) => (
-                <div key={index} className="menu-link-item">
+          {/* Navigation Links - All in one row like Header.tsx */}
+          <div className="desktop-nav-center">
+            <ul className="nav-list">
+              {menuLinks.map((link, index) => (
+                <li key={index}>
                   <Link
                     to={link.path}
-                    className={location.pathname === link.path ? "active" : ""}
-                    style={fonts.mono} // Applied Mono font
+                    className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
+                    style={fonts.mono}
+                    onClick={handleLinkClick}
                   >
                     {link.label}
                   </Link>
-                </div>
+                </li>
               ))}
-            </div>
-          ) : null}
+            </ul>
+          </div>
 
-          {/* Mobile Menu Toggle */}
-          {windowWidth <= 1000 && (
-            <div className="menu-toggle">
-              <button
-                className={`hamburger-icon ${isMenuOpen ? "active" : ""}`}
-                onClick={toggleMenu}
+          {/* Contact Button - Right side like Header.tsx */}
+          <div className="contact-button-right">
+            <Link 
+              to="/contact" 
+              className="contact-button"
+              style={fonts.body}
+              onClick={handleLinkClick}
+            >
+              Contact
+              <span className="arrow-icon">→</span>
+            </Link>
+          </div>
+        </header>
+      ) : (
+        /* ======================= 
+            MOBILE HEADER (like Header.tsx mobile design)
+        ======================== */
+        <>
+          <header className="mobile-header">
+            {/* Logo */}
+            <div className="mobile-logo">
+              <Link to="/" onClick={handleLinkClick}>
+                <img 
+                  src="/work/logo.png" 
+                  alt="AP Agency Logo"
+                  className="mobile-logo-img"
+                />
+              </Link>
+            </div>
+
+            {/* Right Side Actions */}
+            <div className="mobile-actions">
+              <Link 
+                to="/contact"
+                className="mobile-contact-btn"
+                style={fonts.body}
+                onClick={handleLinkClick}
               >
-                <span></span>
-                <span></span>
-                <span></span>
+                Contact
+                <span className="mobile-arrow">→</span>
+              </Link>
+              
+              <button 
+                className={`hamburger-btn ${mobileMenuOpen ? "open" : ""}`}
+                onClick={toggleMenu}
+                aria-label="Toggle Menu"
+              >
+                <span className="hamburger-line"></span>
+                <span className="hamburger-line"></span>
+                <span className="hamburger-line"></span>
               </button>
             </div>
-          )}
-        </div>
-      </div>
+          </header>
 
-      {/* Mobile Menu Overlay */}
-      {windowWidth <= 1000 && (
-        <div className={`mobile-menu ${isMenuOpen ? "open" : ""}`}>
-          <div className="mobile-menu-content">
-            {menuLinks.map((link, index) => (
-              <div key={index} className="mobile-link-item">
-                <Link
-                  to={link.path}
-                  onClick={handleLinkClick}
-                  className={location.pathname === link.path ? "active" : ""}
-                  style={fonts.mono} // Applied Mono font for mobile links too
-                >
-                  {link.label}
-                </Link>
+          {/* ======================= 
+              MOBILE MENU OVERLAY 
+          ======================== */}
+          {mobileMenuOpen && (
+            <div className="mobile-menu-overlay">
+              <div className="mobile-menu-content">
+                <div className="menu-spacer"></div>
+                
+                <div className="mobile-nav-items">
+                  {menuLinks.map((link, index) => (
+                    <div key={index} className="mobile-nav-item">
+                      <Link
+                        to={link.path}
+                        className={`mobile-nav-link ${location.pathname === link.path ? "active" : ""}`}
+                        style={fonts.mono}
+                        onClick={handleLinkClick}
+                      >
+                        {link.label}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile CTA */}
+                <div className="mobile-cta">
+                  <Link
+                    to="/contact"
+                    className="mobile-project-btn"
+                    style={fonts.body}
+                    onClick={handleLinkClick}
+                  >
+                    Start Project
+                    <span className="cta-arrow">→</span>
+                  </Link>
+                  
+                  <p className="copyright" style={fonts.mono}>
+                    AP Agency © {new Date().getFullYear()}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
