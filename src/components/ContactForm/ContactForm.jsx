@@ -1,109 +1,135 @@
-import React, { useRef } from 'react';
-import './ContactForm.css';
+"use client";
+import React, { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+import { LuArrowUpRight, LuBarcode } from "react-icons/lu";
+import "./ContactForm.css";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const FONTS = {
+  display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
+  mono: { fontFamily: "'IBM Plex Mono', monospace" },
+  body: { fontFamily: "'Inter', sans-serif" },
+};
 
 const ContactForm = () => {
-  const containerRef = useRef(null); 
+  const containerRef = useRef(null);
+  const textRef = useRef(null);
+  const ticketRef = useRef(null);
 
-  // --- Font Configuration ---
-  const fonts = {
-    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 }, // Headers
-    mono: { fontFamily: "'IBM Plex Mono', monospace" }, // Buttons / Technical / Strip
-    body: { fontFamily: "'Inter', sans-serif" }, // Plain text
-  };
+  const CALENDLY_URL = "https://calendly.com/apdigitalagency/30min";
 
-  /**
-   * Opens Calendly in a new tab.
-   * Using '_blank' ensures it behaves like a standard hyperlink with target="_blank".
-   */
-  const openCalendlyInNewTab = () => {
-    window.open('https://calendly.com/apdigitalagency/30min', '_blank', 'noopener,noreferrer');
-  };
+  useGSAP(() => {
+    gsap.fromTo(
+      textRef.current,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ticketRef.current,
+      { scale: 0.9, opacity: 0, y: 40 },
+      {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 60%",
+        },
+      }
+    );
+  }, { scope: containerRef });
 
   return (
-    <div className="contact-form" ref={containerRef} style={fonts.body}>
-      <div className="contact-form-row">
-        <div className="contact-form-row-copy-item">
-          <p className="primary lg" style={fonts.display}>
-            Let's Craft Ads That Convert
+    <section className="contact-section" ref={containerRef} style={FONTS.body}>
+      {/* Decorative Golden Background Lines */}
+      <div className="gold-line line-1"></div>
+      <div className="gold-line line-2"></div>
+      <div className="gold-line line-3"></div>
+
+      <div className="contact-container">
+        {/* Headline Section */}
+        <div className="headline-wrapper" ref={textRef}>
+          <div className="status-badge">
+            <span className="pulse-dot"></span>
+            <span className="badge-text" style={FONTS.display}>Available Worldwide</span>
+          </div>
+          
+          <h2 className="main-title" style={FONTS.display}>
+            Let’s Craft Ads <br />
+            <span className="gold-filled-text">That Convert</span>
+          </h2>
+          <p className="sub-description">
+            Ready to create scroll-stopping content? Grab a boarding pass for a free video shoot consultation.
           </p>
         </div>
-      </div>
 
-      <div className="contact-form-row calendly-section-row">
-        <div className="contact-form-col">
-          <div className="contact-form-header">
-            <h3 className="consultation-heading" style={{ ...fonts.display, color: "#ebbd7d" }}>
-              Book a Video Shoot Consultation
-            </h3>
-            <p style={fonts.body}>
-              Ready to create scroll-stopping content that hooks fast and drives results? 
-              Schedule a free consultation to discuss your project and how we can help 
-              transform your product with killer short-form ads.
-            </p>
-          </div>
-        </div>
+        {/* The Boarding Pass Ticket Link */}
+        <div className="ticket-outer" ref={ticketRef}>
+          <a 
+            href={CALENDLY_URL} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="ticket-main"
+          >
+            {/* Left Side: Ticket Details */}
+            <div className="ticket-details">
+              <div className="notch notch-top"></div>
+              <div className="notch notch-bottom"></div>
 
-        <div className="contact-form-col">
-          <div className="calendly-section">
-            <div className="consultation-features">
-              <div className="feature-bullet" style={fonts.body}>
-                <span className="bullet-icon">•</span>
-                <span>30-minute free consultation</span>
+              <div className="ticket-header-row">
+                <div className="info-block">
+                  <p className="label" style={FONTS.mono}>Project Type</p>
+                  <p className="value" style={FONTS.display}>Custom Video / UGC</p>
+                </div>
+                <div className="info-block text-right">
+                  <p className="label" style={FONTS.mono}>Cost</p>
+                  <p className="value gold-accent" style={FONTS.display}>FREE</p>
+                </div>
               </div>
-              <div className="feature-bullet" style={fonts.body}>
-                <span className="bullet-icon">•</span>
-                <span>Discuss your project goals</span>
-              </div>
-              <div className="feature-bullet" style={fonts.body}>
-                <span className="bullet-icon">•</span>
-                <span>Get custom package recommendations</span>
-              </div>
-              <div className="feature-bullet" style={fonts.body}>
-                <span className="bullet-icon">•</span>
-                <span>No commitment required</span>
+
+              <div className="ticket-footer-row">
+                <div className="barcode-icon">
+                  <LuBarcode />
+                </div>
+                <div className="session-info">
+                  <p className="session-title" style={FONTS.display}>30-Min Consultation</p>
+                  <p className="session-sub" style={FONTS.mono}>Secure Your Strategy Session</p>
+                </div>
               </div>
             </div>
-            
-            <div className="calendly-button-container">
-              {/* Button opens link in a new tab */}
-              <button 
-                className="bt calendly-button"
-                onClick={openCalendlyInNewTab}
-                style={fonts.mono}
-              >
-                Schedule Free Consultation
-              </button>
-              
-              <div className="calendly-direct-link" style={fonts.mono}>
-                <p>Or book directly: 
-                  <a 
-                    href="https://calendly.com/apdigitalagency/30min" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="direct-link"
-                  >
-                    https://calendly.com/apdigitalagency/30min
-                  </a>
-                </p>
+
+            {/* Right Side: Action Side */}
+            <div className="ticket-action">
+              <div className="action-content">
+                <span className="vertical-text" style={FONTS.display}>Book Now</span>
+                <LuArrowUpRight className="arrow-icon" />
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+
+        {/* Footer Strip */}
+        <div className="footer-strip" style={FONTS.mono}>
+            <span>Available for Brands & Agencies</span>
+            <span>Global Reach</span>
+            <span>Custom videos built to convert</span>
         </div>
       </div>
-      
-      {/* Footer Strip */}
-      <div className="contact-features" style={{ ...fonts.mono, color: "#ebbd7d" }}>
-        <div className="feature-item">
-          <p className="primary sm">Available for Brands & Agencies</p>
-        </div>
-        <div className="feature-item">
-          <p className="primary sm">Working Worldwide</p>
-        </div>
-        <div className="feature-item">
-          <p className="primary sm">Custom videos & UGC, built to convert</p>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

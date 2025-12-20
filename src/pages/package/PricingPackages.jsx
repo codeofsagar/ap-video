@@ -107,10 +107,10 @@ const PackageCard = ({ pkg, isPlaying, togglePlay, pauseAllVideos, fonts }) => {
         <Link 
           to="/contact" 
           className="ctabutt"
-          style={fonts.mono}
+          style={fonts.body}
         >
           Get {pkg.title.split(' ')[0]}
-          <MdArrowOutward size={20} />
+          
         </Link>
       </div>
     </div>

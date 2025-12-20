@@ -1,4 +1,5 @@
-/* --- GLOBAL RESET --- */
+
+@import "tailwindcss";
 html, body {
   overflow-x: hidden;
   width: 100vw;
@@ -30,6 +31,12 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@media (max-width: 768px) {
+  .ap {
+    font-size: 15px;
+    margin-top: 20px;
+  }
 }
 
 .video-overlay {
@@ -65,9 +72,9 @@ html, body {
 }
 
 .hero-content h1 {
-  font-size: 6vw;
+  font-size: 8vw;
   font-weight: 700;
-  line-height: 6.4vw;
+  line-height: 6.7vw;
   color: #ffffff;
   margin-bottom: 0.2rem;
   display: inline-block;
@@ -146,6 +153,21 @@ html, body {
   z-index: 1;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.big-button--outline {
+  background-color: transparent;
+  color: #BA955D;
+  border: 2px solid #BA955D;
+}
+
+/* Hover effect */
+.big-button--outline:hover {
+  background-color: #BA955D;
+  color: #000;
+}
+.wi {
+  background-color: #e6e5e5;
+}
+
 
 .big-button::before {
   content: "";
@@ -344,8 +366,8 @@ html, body {
 /* -------------------------------------------------------- */
 
 @media (max-width: 1000px) {
-  .hero-content h1 { font-size: 9vw; }
-  .same-size { font-size: 4vw !important; }
+  .hero-content h1 { font-size: 14vw; }
+  .same-size { font-size: 6vw !important; }
 }
 
 @media (max-width: 768px) {

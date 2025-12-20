@@ -140,33 +140,71 @@ const Home = () => {
               {/* Kanit Bold for Main Title */}
               <h1 style={fonts.display}>AdCraft</h1>
               
-              {/* IBM Plex Mono for Agency Branding */}
-              <h3 className="hero-sub" style={{...fonts.mono, textAlign: 'center'}}>
-                BY <span style={{ color: "#ebbd7d" }}>AP AGENCY</span>
-              </h3>
+             
+<p
+  style={{
+    ...fonts.mono,
+    textAlign: 'center',
+   fontSize: 'clamp(16px, 2.5vw, 26px)',
+    lineHeight: 'clamp(44px, 7.2vw, 100px)', // increase from 30px → 34px
+    color: '#99A1AF',
+  }}
+  className="ap"
+>
+  BY AP AGENCY
+</p>
+
             </div>
             
             {/* Text lines with larger font size */}
             <div className="hero-text-lines">
-              <p className="hero-line same-size" style={fonts.body}>
-                You've Got 1 Second to Hook.
-              </p>
-              <p className="hero-highlight same-size" style={{ ...fonts.mono, color: "#ebbd7d" }}>
+            <p
+  className="hero-line same-size"
+  style={{
+    ...fonts.display,
+    textTransform: 'uppercase',
+    textAlign: 'center',
+    fontWeight: 700,
+    fontSize: 'clamp(30px, 6vw, 60px)',
+    lineHeight: 'clamp(36px, 7vw, 72px)',
+  }}
+>
+  YOU'VE GOT 1 SECOND TO HOOK.
+</p>
+
+              <p className="hero-highlight same-size" style={{
+  ...fonts.display,
+  textTransform: 'uppercase',
+  textAlign: 'center',
+  fontWeight: 700,
+  fontSize: 'clamp(34px, 7vw, 68px)',
+  lineHeight: 'clamp(38px, 7.5vw, 66px)',
+}}
+>
                 We Give You 3 Ads <br/> That Hit Like Brass Knuckles.
               </p>
             </div>
             
             {/* High performance text in white */}
-            <p className="hero-line performance-text white-text" style={{ ...fonts.body }}>
-              High-performance video ads for brands and creators.
-            </p>
+           <p
+  style={{
+    ...fonts.body,
+    fontSize: 'clamp(16px, 2.5vw, 26px)',
+    lineHeight: 'clamp(44px, 7.2vw, 100px)',
+    color: '#99A1AF',
+    textAlign: 'center',
+  }}
+>
+  High-performance video ads for brands and creators.
+</p>
+
             
             {/* Bigger buttons with new hover animation */}
             <div className="hero-buttons">
               <Link to="/contact" className="big-button" style={fonts.mono}>
                 Get Started
               </Link>
-              <Link to="/portfolio" className="big-button" style={fonts.mono}>
+              <Link to="/portfolio" className="big-button big-button--outline" style={fonts.mono}>
                 See All Work
               </Link>
             </div>
@@ -226,7 +264,7 @@ const Home = () => {
         </section>
         
         {/* Work Showcase Section - Darker background, golden title */}
-        <section ref={stickyWorkHeaderRef} className="sticky-work-header dark-section">
+        <section ref={stickyWorkHeaderRef} className="sticky-work-header  wi">
           <h1 className="golden-text" style={fonts.display}>Choose Your Video Package</h1>
         </section>
 
@@ -234,7 +272,7 @@ const Home = () => {
           <div className="home-work-list">
             {workItems.map((work, index) => (
               <div key={work.id} className="home-work-item">
-                <h3 className="white-text" style={fonts.display}>{work.title}</h3>
+                <h3 className="white-text" style={fonts.body}>{work.title}</h3>
                 <div className="work-item-video">
                   <video autoPlay loop muted playsInline>
                     <source src={work.video} type="video/mp4" />
@@ -244,7 +282,7 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Link to="/portfolio" className="big-button see-all" style={fonts.mono}>
+          <Link to="/portfolio" className="big-button see-all" style={fonts.body}>
             See All Works
           </Link>
         </section>

@@ -1,29 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { 
+  ArrowRight, 
+  ChevronDown, 
+  ExternalLink, 
+  CornerDownRight, 
+  Menu as MenuIcon, 
+  X 
+} from "lucide-react";
 import "./Menu.css";
 
 const Menu = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
 
-  // --- Original Menu Links ---
   const menuLinks = [
-    { path: "/", label: "Home" },
-    { path: "/portfolio", label: "Portfolio" },
-    { path: "/about", label: "About" },
-    { path: "/contact", label: "Contact" },
-    { path: "/faq", label: "FAQ" },
+    { name: "Home", path: "/" },
+    { name: "Work", path: "/portfolio" },
+    { name: "About", path: "/about" },
+    { name: "FAQ", path: "/faq" },
   ];
 
-  // --- Font Configuration ---
+  const servicesItems = [
+    { 
+      name: 'Landing Page Lead Booster', 
+      path: '/', 
+      desc: 'Custom-built landing page proven to convert cold traffic into leads', 
+      num: "01", 
+      external: false 
+    },
+    { 
+      name: 'Lead Booster', 
+      path: 'https://social-engine-nu.vercel.app/', 
+      desc: 'Maximize lead generation velocity', 
+      num: "02", 
+      external: true 
+    },
+    { 
+      name: 'AdCraft', 
+      path: 'https://ap-video.vercel.app/', 
+      desc: 'High-velocity video asset production', 
+      num: "03", 
+      external: true 
+    },
+  ];
+
   const fonts = {
-    display: { fontFamily: "'Kanit', sans-serif", fontWeight: 700 },
+    display: { fontFamily: "'Kanit', sans-serif" },
     mono: { fontFamily: "'IBM Plex Mono', monospace" },
     body: { fontFamily: "'Inter', sans-serif" },
   };
 
-  // Handle window resize
+  // Handle window resize to close mobile menu if screen gets too big
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -31,154 +62,170 @@ const Menu = () => {
         setMobileMenuOpen(false);
       }
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [mobileMenuOpen]);
 
-  // Toggle body scroll for mobile menu
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [mobileMenuOpen]);
-
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
-  const handleLinkClick = () => mobileMenuOpen && setMobileMenuOpen(false);
+  const handleLinkClick = () => setMobileMenuOpen(false);
 
   return (
-    <div className="header-wrapper"> 
+    <div className="header-wrapper">
       
       {/* ======================= 
-          DESKTOP HEADER (like Header.tsx design)
+          DESKTOP HEADER
       ======================== */}
       {windowWidth > 1000 ? (
         <header className="desktop-header">
-          {/* Logo Container - Left side */}
-          <div className="logo-left">
+          <div className="logo-container">
             <Link to="/" onClick={handleLinkClick}>
-              <img 
-                src="/work/logo.png" 
-                alt="AP Agency Logo"
-                className="desktop-logo"
-              />
+              <img src="/work/logo.png" alt="Logo" className="desktop-logo" />
             </Link>
           </div>
 
-          {/* Navigation Links - All in one row like Header.tsx */}
-          <div className="desktop-nav-center">
+          <nav className="desktop-nav-center">
             <ul className="nav-list">
               {menuLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
                     className={`nav-link ${location.pathname === link.path ? "active" : ""}`}
-                    style={fonts.mono}
-                    onClick={handleLinkClick}
+                    style={fonts.body}
                   >
-                    {link.label}
+                    {link.name}
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
 
-          {/* Contact Button - Right side like Header.tsx */}
-          <div className="contact-button-right">
-            <Link 
-              to="/contact" 
-              className="contact-button"
-              style={fonts.body}
-              onClick={handleLinkClick}
-            >
-              Contact
-              <span className="arrow-icon">→</span>
+              {/* Desktop Services Dropdown */}
+              <li 
+                className="services-dropdown-root"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+              >
+                <button className="nav-link services-btn" style={fonts.body}>
+                  Services
+                  <ChevronDown className={`chevron ${servicesDropdownOpen ? 'rotate' : ''}`} size={16} />
+                </button>
+                
+                <div className={`desktop-dropdown-menu ${servicesDropdownOpen ? 'visible' : ''}`}>
+                  <div className="dropdown-inner">
+                    {servicesItems.map((service, index) => (
+                      <a 
+                        key={index} 
+                        href={service.path} 
+                        target={service.external ? "_blank" : "_self"} 
+                        rel="noreferrer"
+                        className="dropdown-item"
+                      >
+                        <span className="service-num" style={fonts.display}>{service.num}</span>
+                        <div className="service-info">
+                          <div className="service-title-row">
+                            <h4 style={fonts.display}>{service.name}</h4>
+                            {service.external ? <ExternalLink size={12} /> : <CornerDownRight size={14} />}
+                          </div>
+                          <p className="service-desc">{service.desc}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <div className="contact-container">
+            <Link to="/contact" className="contact-button" style={fonts.body}>
+              Contact <ArrowRight size={18} strokeWidth={3} />
             </Link>
           </div>
         </header>
       ) : (
         /* ======================= 
-            MOBILE HEADER (like Header.tsx mobile design)
+            MOBILE HEADER
         ======================== */
         <>
           <header className="mobile-header">
-            {/* Logo */}
-            <div className="mobile-logo">
+            <div className="mobile-logo-container">
               <Link to="/" onClick={handleLinkClick}>
-                <img 
-                  src="/work/logo.png" 
-                  alt="AP Agency Logo"
-                  className="mobile-logo-img"
-                />
+                <img src="/work/logo.png" alt="Logo" className="mobile-logo-img" />
               </Link>
             </div>
 
-            {/* Right Side Actions */}
-            <div className="mobile-actions">
-              <Link 
-                to="/contact"
-                className="mobile-contact-btn"
-                style={fonts.body}
-                onClick={handleLinkClick}
-              >
-                Contact
-                <span className="mobile-arrow">→</span>
+            <div className="mobile-header-right">
+              <Link to="/contact" className="mobile-contact-btn" style={fonts.body} onClick={handleLinkClick}>
+                Contact <ArrowRight size={16} strokeWidth={3} />
               </Link>
-              
-              <button 
-                className={`hamburger-btn ${mobileMenuOpen ? "open" : ""}`}
-                onClick={toggleMenu}
-                aria-label="Toggle Menu"
-              >
-                <span className="hamburger-line"></span>
-                <span className="hamburger-line"></span>
-                <span className="hamburger-line"></span>
+              <button className="mobile-toggle-btn" onClick={toggleMenu} aria-label="Toggle Menu">
+                {mobileMenuOpen ? <X size={28} color="white" /> : <MenuIcon size={28} color="white" />}
               </button>
             </div>
           </header>
 
           {/* ======================= 
-              MOBILE MENU OVERLAY 
+              MOBILE MENU OVERLAY
           ======================== */}
           {mobileMenuOpen && (
             <div className="mobile-menu-overlay">
+              {/* Noise texture background */}
+              <div className="noise-overlay"></div>
+
               <div className="mobile-menu-content">
-                <div className="menu-spacer"></div>
-                
-                <div className="mobile-nav-items">
+                <div className="mobile-nav-section">
+                  <div className="nav-divider">
+                    <span style={fonts.mono}>Navigation</span>
+                  </div>
+
+                  {/* Standard Links */}
                   {menuLinks.map((link, index) => (
-                    <div key={index} className="mobile-nav-item">
-                      <Link
-                        to={link.path}
-                        className={`mobile-nav-link ${location.pathname === link.path ? "active" : ""}`}
-                        style={fonts.mono}
-                        onClick={handleLinkClick}
-                      >
-                        {link.label}
-                      </Link>
-                    </div>
+                    <Link key={index} to={link.path} className="mobile-nav-block" onClick={handleLinkClick}>
+                      {link.name}
+                    </Link>
                   ))}
+
+                  {/* Mobile Services Accordion */}
+                  <div className="mobile-accordion">
+                    <button 
+                      className="mobile-accordion-trigger" 
+                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    >
+                      Services 
+                      <ChevronDown size={20} className={`chevron ${mobileServicesOpen ? 'rotate' : ''}`} />
+                    </button>
+                    
+                    {mobileServicesOpen && (
+                      <div className="mobile-accordion-content">
+                        {servicesItems.map((service, index) => (
+                          <a 
+                            key={index} 
+                            href={service.path} 
+                            target={service.external ? "_blank" : "_self"}
+                            className="mobile-service-card" 
+                            onClick={handleLinkClick}
+                          >
+                            <div className="m-service-header">
+                              <span className="m-service-num" style={fonts.mono}>{service.num}</span>
+                              {service.external && <ExternalLink size={12} className="m-external-icon" />}
+                            </div>
+                            <div className="m-service-text">
+                              <h4 style={fonts.display}>{service.name}</h4>
+                              <p className="m-service-desc">{service.desc}</p>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* Mobile CTA */}
-                <div className="mobile-cta">
-                  <Link
-                    to="/contact"
-                    className="mobile-project-btn"
-                    style={fonts.body}
-                    onClick={handleLinkClick}
-                  >
-                    Start Project
-                    <span className="cta-arrow">→</span>
+                {/* Mobile Footer Section */}
+                <div className="mobile-footer-cta">
+                  <Link to="/contact" className="mobile-start-project-btn" onClick={handleLinkClick} style={fonts.body}>
+                    Start Project 
+                    <ArrowRight size={22} strokeWidth={3} />
                   </Link>
                   
-                  <p className="copyright" style={fonts.mono}>
+                  <p className="mobile-copyright-centered" style={fonts.mono}>
                     AP Agency © {new Date().getFullYear()}
                   </p>
                 </div>
