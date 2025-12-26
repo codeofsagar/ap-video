@@ -2,10 +2,9 @@
   --gold: #B9935B;
   --gold-hover: #cfa66b;
   --black-solid: #000000;
-  --gray-text: #6b7280; /* text-gray-500 */
+  --gray-text: #6b7280;
 }
 
-/* --- BASE WRAPPER --- */
 .header-wrapper {
   width: 100%;
   position: fixed;
@@ -15,27 +14,39 @@
 }
 
 /* ======================= 
-    DESKTOP HEADER
+   DESKTOP HEADER
 ======================== */
 .desktop-header {
   display: flex;
   align-items: center;
   position: fixed;
-  top: 16px;
+  top: 26px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   max-width: 1400px;
   height: 64px;
+  /* Default DARK theme */
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  
+  backdrop-filter: blur(12px);
   padding: 0 32px;
   z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+/* LIGHT THEME OVERRIDE */
+.desktop-header.is-light {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: black;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.05);
 }
 
 .desktop-logo {
-  height: 96px; /* High-res logo size */
+  height: 96px;
   width: auto;
   object-fit: contain;
 }
@@ -56,6 +67,7 @@
 }
 
 .nav-link {
+  /* Default Dark Text */
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   text-transform: uppercase;
@@ -71,11 +83,20 @@
   cursor: pointer;
 }
 
+/* Light Theme Nav Links */
+.desktop-header.is-light .nav-link {
+  color: rgba(0, 0, 0, 0.8);
+}
+.desktop-header.is-light .nav-link:hover,
+.desktop-header.is-light .nav-link.active {
+  color: var(--gold);
+}
+
 .nav-link:hover, .nav-link.active {
   color: var(--gold);
 }
 
-/* --- DESKTOP DROPDOWN (Fixed Spacing & Colors) --- */
+/* --- DESKTOP DROPDOWN --- */
 .services-dropdown-root {
   position: relative;
   height: 64px;
@@ -89,13 +110,22 @@
   left: 50%;
   transform: translateX(-50%) translateY(10px);
   width: 360px;
-  background: var(--black-solid); /* Fixed: Solid Black */
+  /* Default Dark */
+  background: var(--black-solid);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  
   padding: 10px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* Light Theme Dropdown */
+.desktop-dropdown-menu.is-light {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .desktop-dropdown-menu.visible {
@@ -119,6 +149,10 @@
   border-left-color: var(--gold);
 }
 
+.desktop-dropdown-menu.is-light .dropdown-item:hover {
+  background: rgba(0,0,0,0.03);
+}
+
 .service-num {
   font-size: 16px;
   font-weight: 900;
@@ -134,15 +168,20 @@
 }
 
 .service-title-row h4 {
-  color: #ffffff;
-  font-size: 14px; /* text-sm */
+  color: #ffffff; /* Default Dark */
+  font-size: 14px;
   font-weight: 700;
   margin: 0;
   letter-spacing: 0.02em;
 }
 
+/* Light Theme Text */
+.desktop-dropdown-menu.is-light .service-title-row h4 {
+  color: #000000;
+}
+
 .service-desc { 
-  font-size: 5px; /* text-[10px] */
+  font-size: 10px;
   color: var(--gray-text); 
   text-transform: uppercase; 
   margin-top: 4px;
@@ -169,7 +208,7 @@
 }
 
 /* ======================= 
-    MOBILE HEADER
+   MOBILE HEADER
 ======================== */
 .mobile-header {
   position: fixed;
@@ -178,18 +217,27 @@
   transform: translateX(-50%);
   width: 94%;
   height: 64px;
+  /* Default Dark */
   background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1002;
+  transition: background 0.3s ease;
+}
+
+/* Light Theme Mobile Header */
+.mobile-header.is-light {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .mobile-logo-img {
-  height: 72px; /* Increased per request */
+  height: 72px;
   width: auto;
   object-fit: contain;
 }
@@ -218,10 +266,16 @@
   border: none;
   padding: 5px;
   cursor: pointer;
+  color: white; /* Default Dark */
+}
+
+/* Light Theme Toggle Button */
+.mobile-toggle-btn.is-light {
+  color: black;
 }
 
 /* ======================= 
-    MOBILE MENU OVERLAY
+   MOBILE MENU OVERLAY
 ======================== */
 .mobile-menu-overlay {
   position: fixed;
@@ -238,7 +292,6 @@
   min-height: 100vh;
 }
 
-/* --- NAVIGATION DIVIDER (Centered & Gold) --- */
 .nav-divider {
   display: flex;
   align-items: center;
@@ -263,7 +316,6 @@
   font-weight: 700;
 }
 
-/* --- MOBILE LINKS (With side padding) --- */
 .mobile-nav-block {
   display: block;
   width: 100%;
@@ -279,7 +331,6 @@
   letter-spacing: 0.1em;
 }
 
-/* --- MOBILE ACCORDION --- */
 .mobile-accordion-trigger {
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
@@ -331,7 +382,6 @@
   margin-top: 6px;
 }
 
-/* --- MOBILE FOOTER --- */
 .mobile-footer-cta {
   margin-top: auto;
   padding-top: 50px;

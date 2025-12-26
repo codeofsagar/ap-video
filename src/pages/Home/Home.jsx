@@ -166,7 +166,7 @@ const Home = () => {
     textAlign: 'center',
     fontWeight: 700,
     fontSize: 'clamp(30px, 6vw, 60px)',
-    lineHeight: 'clamp(36px, 7vw, 72px)',
+    lineHeight: 'clamp(36px, 7vw, 42px)',
   }}
 >
   YOU'VE GOT 1 SECOND TO HOOK.
@@ -178,7 +178,7 @@ const Home = () => {
   textAlign: 'center',
   fontWeight: 700,
   fontSize: 'clamp(34px, 7vw, 68px)',
-  lineHeight: 'clamp(38px, 7.5vw, 66px)',
+  lineHeight: 'clamp(38px, 7.5vw, 46px)',
 }}
 >
                 We Give You 3 Ads <br/> That Hit Like Brass Knuckles.
@@ -190,7 +190,7 @@ const Home = () => {
   style={{
     ...fonts.body,
     fontSize: 'clamp(16px, 2.5vw, 26px)',
-    lineHeight: 'clamp(44px, 7.2vw, 100px)',
+    lineHeight: 'clamp(44px, 7.2vw, 80px)',
     color: '#99A1AF',
     textAlign: 'center',
   }}
@@ -264,8 +264,8 @@ const Home = () => {
         </section>
         
         {/* Work Showcase Section - Darker background, golden title */}
-        <section ref={stickyWorkHeaderRef} className="sticky-work-header  wi">
-          <h1 className="golden-text" style={fonts.display}>Choose Your Video Package</h1>
+        <section ref={stickyWorkHeaderRef} className="sticky-work-header  wi ">
+          <h1 className="golden-text dark-bg" style={fonts.display}>Choose Your Video Package</h1>
         </section>
 
         <section ref={homeWorkRef} className="home-work dark-section">

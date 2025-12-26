@@ -58,7 +58,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.6em;
+  
   margin-top: 80px;
 }
 
@@ -68,13 +68,13 @@ html, body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 0.3em;
+  
 }
 
 .hero-content h1 {
   font-size: 8vw;
   font-weight: 700;
-  line-height: 6.7vw;
+  line-height: 4vw;
   color: #ffffff;
   margin-bottom: 0.2rem;
   display: inline-block;

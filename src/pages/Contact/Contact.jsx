@@ -11,7 +11,7 @@ import ReactLenis from "lenis/react";
 const Contact = () => {
   return (
     <ReactLenis root>
-      <div className="page contact">
+      <div className="page contact dark-bg">
         <ContactForm />
         <Footer />
       </div>

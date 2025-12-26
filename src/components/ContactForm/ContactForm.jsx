@@ -54,7 +54,7 @@ const ContactForm = () => {
   }, { scope: containerRef });
 
   return (
-    <section className="contact-section" ref={containerRef} style={FONTS.body}>
+    <section className="contact-section dark-bg" ref={containerRef} style={FONTS.body}>
       {/* Decorative Golden Background Lines */}
       <div className="gold-line line-1"></div>
       <div className="gold-line line-2"></div>

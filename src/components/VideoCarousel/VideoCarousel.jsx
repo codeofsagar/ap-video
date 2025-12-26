@@ -139,7 +139,7 @@ const VideoCarousel = () => {
 
   return (
     <div 
-      className="carousel-outer-container"
+      className="carousel-outer-container dark-bg "
       style={{
         backgroundImage: `url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop')`,
         backgroundSize: 'cover',

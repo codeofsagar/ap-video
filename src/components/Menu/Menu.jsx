@@ -8,6 +8,7 @@ import {
   Menu as MenuIcon, 
   X 
 } from "lucide-react";
+import { useBackgroundTheme } from "./BackgroundContext"; // Adjust path if needed
 import "./Menu.css";
 
 const Menu = () => {
@@ -16,6 +17,61 @@ const Menu = () => {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
+
+  // 1. GET THEME FROM CONTEXT
+  const { theme, updateTheme } = useBackgroundTheme();
+
+  // 2. SCROLL SENSOR LOGIC (The "Laser" System)
+  useEffect(() => {
+    const handleScrollTheme = () => {
+      // Check 3 points across the screen (Left, Center, Right)
+      const pointsToCheck = [
+        window.innerWidth * 0.1,
+        window.innerWidth * 0.5,
+        window.innerWidth * 0.9
+      ];
+      
+      const y = 20; // Check 20px down from the top
+      let foundDark = false;
+
+      for (const x of pointsToCheck) {
+        const elements = document.elementsFromPoint(x, y);
+        
+        for (const el of elements) {
+          // Skip header, generic HTML/BODY
+          if (el.tagName === 'HEADER' || el.tagName === 'BODY' || el.tagName === 'HTML' || el.classList.contains('mobile-menu-overlay')) {
+            continue;
+          }
+
+          // Detect Dark Markers
+          const isDark = el.closest('.dark-bg, .bg-dark, .bg-black, [data-nav-theme="dark"]');
+          const isLight = el.closest('[data-nav-theme="light"]');
+
+          // If explicit light override found inside dark
+          if (isLight && (!isDark || isLight.contains(isDark))) {
+            break; 
+          }
+
+          if (isDark) {
+            foundDark = true;
+            break;
+          }
+        }
+        if (foundDark) break;
+      }
+
+      if (foundDark) {
+        updateTheme('dark');
+      } else {
+        updateTheme('light');
+      }
+    };
+
+    window.addEventListener('scroll', handleScrollTheme);
+    handleScrollTheme(); // Run on mount
+
+    return () => window.removeEventListener('scroll', handleScrollTheme);
+  }, [updateTheme]);
 
   const menuLinks = [
     { name: "Home", path: "/" },
@@ -54,7 +110,6 @@ const Menu = () => {
     body: { fontFamily: "'Inter', sans-serif" },
   };
 
-  // Handle window resize to close mobile menu if screen gets too big
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -69,6 +124,9 @@ const Menu = () => {
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
   const handleLinkClick = () => setMobileMenuOpen(false);
 
+  // Helper class for dynamic theme
+  const themeClass = theme === 'light' ? 'is-light' : 'is-dark';
+
   return (
     <div className="header-wrapper">
       
@@ -76,7 +134,7 @@ const Menu = () => {
           DESKTOP HEADER
       ======================== */}
       {windowWidth > 1000 ? (
-        <header className="desktop-header">
+        <header className={`desktop-header ${themeClass}`}>
           <div className="logo-container">
             <Link to="/" onClick={handleLinkClick}>
               <img src="/work/logo.png" alt="Logo" className="desktop-logo" />
@@ -97,7 +155,7 @@ const Menu = () => {
                 </li>
               ))}
 
-              {/* Desktop Services Dropdown */}
+              {/* Services Dropdown */}
               <li 
                 className="services-dropdown-root"
                 onMouseEnter={() => setServicesDropdownOpen(true)}
@@ -108,7 +166,7 @@ const Menu = () => {
                   <ChevronDown className={`chevron ${servicesDropdownOpen ? 'rotate' : ''}`} size={16} />
                 </button>
                 
-                <div className={`desktop-dropdown-menu ${servicesDropdownOpen ? 'visible' : ''}`}>
+                <div className={`desktop-dropdown-menu ${themeClass} ${servicesDropdownOpen ? 'visible' : ''}`}>
                   <div className="dropdown-inner">
                     {servicesItems.map((service, index) => (
                       <a 
@@ -124,7 +182,9 @@ const Menu = () => {
                             <h4 style={fonts.display}>{service.name}</h4>
                             {service.external ? <ExternalLink size={12} /> : <CornerDownRight size={14} />}
                           </div>
-                          <p className="service-desc">{service.desc}</p>
+                          <p className="service-desc" style={{ fontSize: "10px" }}>
+                            {service.desc}
+                          </p>
                         </div>
                       </a>
                     ))}
@@ -142,10 +202,10 @@ const Menu = () => {
         </header>
       ) : (
         /* ======================= 
-            MOBILE HEADER
+            MOBILE HEADER (Only the top bar changes color)
         ======================== */
         <>
-          <header className="mobile-header">
+          <header className={`mobile-header ${themeClass}`}>
             <div className="mobile-logo-container">
               <Link to="/" onClick={handleLinkClick}>
                 <img src="/work/logo.png" alt="Logo" className="mobile-logo-img" />
@@ -156,34 +216,28 @@ const Menu = () => {
               <Link to="/contact" className="mobile-contact-btn" style={fonts.body} onClick={handleLinkClick}>
                 Contact <ArrowRight size={16} strokeWidth={3} />
               </Link>
-              <button className="mobile-toggle-btn" onClick={toggleMenu} aria-label="Toggle Menu">
-                {mobileMenuOpen ? <X size={28} color="white" /> : <MenuIcon size={28} color="white" />}
+              <button className={`mobile-toggle-btn ${themeClass}`} onClick={toggleMenu} aria-label="Toggle Menu">
+                {mobileMenuOpen ? <X size={28} /> : <MenuIcon size={28} />}
               </button>
             </div>
           </header>
 
-          {/* ======================= 
-              MOBILE MENU OVERLAY
-          ======================== */}
+          {/* Mobile Overlay (Always Dark for contrast) */}
           {mobileMenuOpen && (
             <div className="mobile-menu-overlay">
-              {/* Noise texture background */}
               <div className="noise-overlay"></div>
-
               <div className="mobile-menu-content">
                 <div className="mobile-nav-section">
                   <div className="nav-divider">
                     <span style={fonts.mono}>Navigation</span>
                   </div>
 
-                  {/* Standard Links */}
                   {menuLinks.map((link, index) => (
                     <Link key={index} to={link.path} className="mobile-nav-block" onClick={handleLinkClick}>
                       {link.name}
                     </Link>
                   ))}
 
-                  {/* Mobile Services Accordion */}
                   <div className="mobile-accordion">
                     <button 
                       className="mobile-accordion-trigger" 
@@ -218,13 +272,11 @@ const Menu = () => {
                   </div>
                 </div>
 
-                {/* Mobile Footer Section */}
                 <div className="mobile-footer-cta">
                   <Link to="/contact" className="mobile-start-project-btn" onClick={handleLinkClick} style={fonts.body}>
                     Start Project 
                     <ArrowRight size={22} strokeWidth={3} />
                   </Link>
-                  
                   <p className="mobile-copyright-centered" style={fonts.mono}>
                     AP Agency © {new Date().getFullYear()}
                   </p>
