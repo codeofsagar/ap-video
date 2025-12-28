@@ -41,10 +41,8 @@
   font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.1;
-  background: linear-gradient(to right, #ffffff, var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+ color:white;
+ 
   position: relative;
   display: inline-block;
   font-family: 'Druk Wide Cy Web Bold Regular';
