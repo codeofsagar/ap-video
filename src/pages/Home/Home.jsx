@@ -127,7 +127,7 @@ const Home = () => {
     <ReactLenis root>
       <div className="page home" style={fonts.body}>
         {/* Hero Section */}
-        <section className="hero">
+        <section className="hero dark-bg">
           <div className="hero-video">
             <video autoPlay loop muted playsInline>
               <source src="/work/bgvid.mp4" type="video/mp4" />
