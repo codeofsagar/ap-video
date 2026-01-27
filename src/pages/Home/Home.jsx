@@ -135,68 +135,65 @@ const Home = () => {
             <div className="video-overlay"></div>
           </div>
 
-          <div className="hero-content">
-            <div className="hero-title-wrapper">
-              {/* Kanit Bold for Main Title */}
-              <h1 style={fonts.display}>AdCraft</h1>
-              
-             
-<p
-  style={{
-    ...fonts.mono,
-    textAlign: 'center',
-   fontSize: 'clamp(16px, 2.5vw, 26px)',
-    lineHeight: 'clamp(44px, 7.2vw, 100px)', // increase from 30px → 34px
-    color: '#99A1AF',
-  }}
-  className="ap"
->
-  BY AP AGENCY
-</p>
+       <div className="hero-content" style={{ maxWidth: '1400px', margin: '80px auto 0 auto' }}>
+  <div className="hero-title-wrapper">
+    <h1 style={{ ...fonts.display, lineHeight: "1" }}>AdCraft</h1>
+    <p
+      style={{
+        ...fonts.mono,
+        textAlign: 'center',
+        fontSize: 'clamp(14px, 1.5vw, 20px)', // Reduced slightly for better hierarchy
+        lineHeight: '1.5',
+        color: '#99A1AF',
+        marginTop: '10px'
+      }}
+      className="ap"
+    >
+      BY AP AGENCY
+    </p>
+  </div>
 
-            </div>
-            
-            {/* Text lines with larger font size */}
-            <div className="hero-text-lines">
-            <p
-  className="hero-line same-size"
-  style={{
-    ...fonts.display,
-    textTransform: 'uppercase',
-    textAlign: 'center',
-    fontWeight: 700,
-    fontSize: 'clamp(30px, 6vw, 60px)',
-    lineHeight: 'clamp(36px, 7vw, 42px)',
-  }}
->
-  YOU'VE GOT 1 SECOND TO HOOK.
-</p>
+  <div className="hero-text-lines" style={{ width: '100%' }}>
+    <p
+      className="hero-line same-size"
+      style={{
+        ...fonts.display,
+        textTransform: 'uppercase',
+        textAlign: 'center',
+        fontWeight: 700,
+        fontSize: 'clamp(28px, 5vw, 55px)', // Added a max cap
+        lineHeight: '1.1', // Scalable line height
+      }}
+    >
+      YOU'VE GOT 1 SECOND TO HOOK.
+    </p>
 
-              <p className="hero-highlight same-size" style={{
-  ...fonts.display,
-  textTransform: 'uppercase',
-  textAlign: 'center',
-  fontWeight: 700,
-  fontSize: 'clamp(34px, 7vw, 68px)',
-  lineHeight: 'clamp(38px, 7.5vw, 46px)',
-}}
->
-                We Give You 3 Ads <br/> That Hit Like Brass Knuckles.
-              </p>
-            </div>
-            
-            {/* High performance text in white */}
-           <p
-  style={{
-    ...fonts.body,
-    fontSize: 'clamp(16px, 2.5vw, 26px)',
-    lineHeight: 'clamp(44px, 7.2vw, 80px)',
-    color: '#99A1AF',
-    textAlign: 'center',
-  }}
->
-  High-performance video ads for brands and creators.
-</p>
+    <p className="hero-highlight same-size" style={{
+      ...fonts.display,
+      textTransform: 'uppercase',
+      textAlign: 'center',
+      fontWeight: 700,
+      fontSize: 'clamp(32px, 6vw, 65px)', // Added a max cap
+      lineHeight: '1.1', // Scalable line height
+      marginTop: '10px'
+    }}
+    >
+      We Give You 3 Ads <br /> That Hit Like Brass Knuckles.
+    </p>
+  </div>
+
+  <p
+    style={{
+      ...fonts.body,
+      fontSize: 'clamp(16px, 2vw, 24px)',
+      lineHeight: '1.4',
+      color: '#99A1AF',
+      textAlign: 'center',
+      marginTop: '20px'
+    }}
+  >
+    High-performance video ads for brands and creators.
+  </p>
 
             
             {/* Bigger buttons with new hover animation */}
